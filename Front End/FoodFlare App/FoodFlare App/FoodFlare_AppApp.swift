@@ -29,7 +29,7 @@ struct FoodFlare_AppApp: App {
         } else {
             print("App has not been launched before.")
             UserDefaults.standard.set(true, forKey: "launchedBefore")
-            return true
+            return false
         }
     }
 
@@ -55,8 +55,9 @@ struct FoodFlare_AppApp: App {
                 foodItem.foodCalories = foodItemDict["foodCalories"] as? Int16 ?? 0
                 foodItem.foodSugar = foodItemDict["foodSugar"] as? Int16 ?? 0
                 foodItem.foodDescription = foodItemDict["foodDescription"] as? String
+                foodItem.foodCategoryColor = foodItemDict["foodCategoryColor"] as? String
 
-                print("Food Item: \(foodItem.foodName ?? ""), Category: \(foodItem.foodCategory ?? ""), Calories: \(foodItem.foodCalories), Sugar: \(foodItem.foodSugar) Description: \(foodItem.foodDescription)")
+                print("Food Item: \(foodItem.foodName ?? ""), Category: \(foodItem.foodCategory ?? ""), Calories: \(foodItem.foodCalories), Sugar: \(foodItem.foodSugar) Description: \(foodItem.foodDescription) Color: \(foodItem.foodCategoryColor)")
             }
 
             try context.save()

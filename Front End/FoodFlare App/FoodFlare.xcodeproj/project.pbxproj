@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D129B3C2A3A144A006620B3 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D129B3B2A3A144A006620B3 /* PersistenceController.swift */; };
 		3D2E5C0C2A38BF4700312FA5 /* FoodDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2E5C0B2A38BF4700312FA5 /* FoodDetails.swift */; };
 		3D4901652A3B3424008484FC /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4901642A3B3424008484FC /* HistoryView.swift */; };
 		3D5EAADE2A383EDD004DE112 /* FoodFlare_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5EAADD2A383EDD004DE112 /* FoodFlare_AppApp.swift */; };
@@ -19,6 +18,8 @@
 		3D5EAAF42A38478B004DE112 /* HistoryWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5EAAF32A38478B004DE112 /* HistoryWidget.swift */; };
 		3D5EAAF62A3847CE004DE112 /* CreateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5EAAF52A3847CE004DE112 /* CreateButton.swift */; };
 		3D5EAAF92A384AE6004DE112 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5EAAF82A384AE6004DE112 /* CameraView.swift */; };
+		3D5F43E32A3CDCD30042529A /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5F43E22A3CDCD30042529A /* StatisticView.swift */; };
+		3D5F43E52A3D00CC0042529A /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5F43E42A3D00CB0042529A /* PersistenceController.swift */; };
 		3D8F6ADB2A3CB867000C1F77 /* FoodFlare Classification 1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3D8F6ADA2A3CB867000C1F77 /* FoodFlare Classification 1.mlmodel */; };
 		3D9E30702A3AFE7000C424D7 /* olddefaultDatan.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D9E306F2A3AFE7000C424D7 /* olddefaultDatan.json */; };
 		3D9E307C2A3B13ED00C424D7 /* FoodItem.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3D9E307A2A3B13ED00C424D7 /* FoodItem.xcdatamodeld */; };
@@ -29,7 +30,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3D129B3B2A3A144A006620B3 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		3D2E5C0B2A38BF4700312FA5 /* FoodDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetails.swift; sourceTree = "<group>"; };
 		3D4901642A3B3424008484FC /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		3D5EAADA2A383EDD004DE112 /* FoodFlare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodFlare.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,6 +43,8 @@
 		3D5EAAF32A38478B004DE112 /* HistoryWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryWidget.swift; sourceTree = "<group>"; };
 		3D5EAAF52A3847CE004DE112 /* CreateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateButton.swift; sourceTree = "<group>"; };
 		3D5EAAF82A384AE6004DE112 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		3D5F43E22A3CDCD30042529A /* StatisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
+		3D5F43E42A3D00CB0042529A /* PersistenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		3D8F6ADA2A3CB867000C1F77 /* FoodFlare Classification 1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = "FoodFlare Classification 1.mlmodel"; path = "../../../Machine Learning/Model/FoodFlare Classification 1.mlmodel"; sourceTree = "<group>"; };
 		3D9E306F2A3AFE7000C424D7 /* olddefaultDatan.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = olddefaultDatan.json; sourceTree = "<group>"; };
 		3D9E307B2A3B13ED00C424D7 /* FoodItem.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FoodItem.xcdatamodel; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 		3DB3CA6C2A3C8CE4001613B3 /* defaultData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = defaultData.json; sourceTree = "<group>"; };
 		3DB3CA702A3C9FF7001613B3 /* ResilientImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResilientImage.swift; sourceTree = "<group>"; };
 		3DC001382A3857A7002DBF11 /* FoodFlare-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "FoodFlare-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		3DDCEF862A3D022F007374BC /* FoodItem 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "FoodItem 2.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +94,7 @@
 		3D5EAADC2A383EDD004DE112 /* FoodFlare App */ = {
 			isa = PBXGroup;
 			children = (
+				3D5F43E42A3D00CB0042529A /* PersistenceController.swift */,
 				3D8F6ADA2A3CB867000C1F77 /* FoodFlare Classification 1.mlmodel */,
 				3DC001382A3857A7002DBF11 /* FoodFlare-App-Info.plist */,
 				3D5EAAEC2A384697004DE112 /* Views */,
@@ -99,7 +103,6 @@
 				3D5EAAE12A383EDE004DE112 /* Assets.xcassets */,
 				3D5EAAE32A383EDE004DE112 /* FoodFlare_App.entitlements */,
 				3D5EAAE42A383EDE004DE112 /* Preview Content */,
-				3D129B3B2A3A144A006620B3 /* PersistenceController.swift */,
 				3D9E306F2A3AFE7000C424D7 /* olddefaultDatan.json */,
 				3D9E307A2A3B13ED00C424D7 /* FoodItem.xcdatamodeld */,
 				3DB3CA6C2A3C8CE4001613B3 /* defaultData.json */,
@@ -132,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				3D5EAAEE2A384705004DE112 /* StatisticWidget.swift */,
+				3D5F43E22A3CDCD30042529A /* StatisticView.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -237,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D5EAAEF2A384705004DE112 /* StatisticWidget.swift in Sources */,
+				3D5F43E32A3CDCD30042529A /* StatisticView.swift in Sources */,
 				3D5EAAF92A384AE6004DE112 /* CameraView.swift in Sources */,
 				3D5EAAF62A3847CE004DE112 /* CreateButton.swift in Sources */,
 				3D5EAAE02A383EDD004DE112 /* ContentView.swift in Sources */,
@@ -244,13 +249,13 @@
 				3D9E307C2A3B13ED00C424D7 /* FoodItem.xcdatamodeld in Sources */,
 				3D5EAAF12A38472D004DE112 /* Home.swift in Sources */,
 				3D4901652A3B3424008484FC /* HistoryView.swift in Sources */,
-				3D129B3C2A3A144A006620B3 /* PersistenceController.swift in Sources */,
 				3D2E5C0C2A38BF4700312FA5 /* FoodDetails.swift in Sources */,
 				3DAF6ED32A398EAE0004C024 /* DetectedItemView.swift in Sources */,
 				3D8F6ADB2A3CB867000C1F77 /* FoodFlare Classification 1.mlmodel in Sources */,
 				3D5EAAF42A38478B004DE112 /* HistoryWidget.swift in Sources */,
 				3DB3CA712A3C9FF7001613B3 /* ResilientImage.swift in Sources */,
 				3D5EAADE2A383EDD004DE112 /* FoodFlare_AppApp.swift in Sources */,
+				3D5F43E52A3D00CC0042529A /* PersistenceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,9 +482,10 @@
 		3D9E307A2A3B13ED00C424D7 /* FoodItem.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				3DDCEF862A3D022F007374BC /* FoodItem 2.xcdatamodel */,
 				3D9E307B2A3B13ED00C424D7 /* FoodItem.xcdatamodel */,
 			);
-			currentVersion = 3D9E307B2A3B13ED00C424D7 /* FoodItem.xcdatamodel */;
+			currentVersion = 3DDCEF862A3D022F007374BC /* FoodItem 2.xcdatamodel */;
 			path = FoodItem.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

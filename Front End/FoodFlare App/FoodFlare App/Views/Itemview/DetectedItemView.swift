@@ -10,8 +10,8 @@ struct DetectedItemView: View {
     @State var showDetailsSheet: Bool = false
 
     var body: some View {
-        // Here we fetch the detected item from CoreData
         let detectedItem = foodItems.first(where: { $0.foodName == detectedItemName })
+        
         
         let calories = detectedItem?.foodCalories ?? 0
 
@@ -113,18 +113,35 @@ struct DetectedItemView: View {
                     Divider()
                     VStack(alignment: .leading) {
                         Button(action: {
-                            print("button pressed")
-                        }) {
-                            Text("Let's Eat")
-                                .font(.system(size: 20, weight: .regular, design: .default))
-                                .foregroundColor(.white)
-                                .fontWeight(.regular)
-                                .padding(.vertical, 15.0)
-                                .padding(.horizontal, 20.0)
-                                .frame(maxWidth: .infinity)
-                                .background(Color.blue)
-                                .accentColor(.white)
-                                .cornerRadius(17.0)
+                                    let newStatistics = Statistics(context: viewContext)
+                                    newStatistics.date = Date()
+                                    
+                                    if let detectedItem = foodItems.first(where: { $0.foodName == detectedItemName }) {
+                                        newStatistics.foodName = detectedItem.foodName
+                                        newStatistics.foodCategory = detectedItem.foodCategory
+                                        newStatistics.foodCalories = detectedItem.foodCalories
+                                        newStatistics.foodSugar = detectedItem.foodSugar
+                                        newStatistics.foodCategoryColor = detectedItem.foodCategoryColor
+                                    }
+
+                                    do {
+                                        try viewContext.save()
+                                        print("Saved new statistics item: \(newStatistics)")
+                                    } catch {
+                                        let nsError = error as NSError
+                                        fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                                    }
+                                }) {
+                                    Text("Let's Eat")
+                                        .font(.system(size: 20, weight: .regular, design: .default))
+                                        .foregroundColor(.white)
+                                        .fontWeight(.regular)
+                                        .padding(.vertical, 15.0)
+                                        .padding(.horizontal, 20.0)
+                                        .frame(maxWidth: .infinity)
+                                        .background(Color.blue)
+                                        .accentColor(.white)
+                                        .cornerRadius(17.0)
                         }
                         Button(action: {
                             print("button pressed")

@@ -33,7 +33,7 @@ struct Home: View {
                 .fontWeight(.bold) // Make the font bold
                 .padding(.top) // Add padding to the top
             ScrollView {
-                StatisticWidget()
+                StatisticView()
                 HistoryView()
                 
             }
