@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Items</key>
+	<string></string>
+	<key>white</key>
+	<array>
+		<string>Headphones</string>
+		<integer>290</integer>
+		<integer>26</integer>
+	</array>
+	<key>black</key>
+	<array>
+		<string>Headphones</string>
+		<integer>350</integer>
+		<integer>24</integer>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,256 @@
+{
+  "foodItems": [
+    {
+      "foodName": "apple",
+      "foodCategory": "Fruit",
+      "foodCalories": 52,
+      "foodSugar": 10,
+      "foodDescription": "A crunchy and sweet fruit that is rich in antioxidants."
+    },
+    {
+      "foodName": "banana",
+      "foodCategory": "Fruit",
+      "foodCalories": 96,
+      "foodSugar": 17,
+      "foodDescription": "A tropical fruit with a creamy texture and high potassium content."
+    },
+    {
+      "foodName": "beetroot",
+      "foodCategory": "Vegetable",
+      "foodCalories": 43,
+      "foodSugar": 9,
+      "foodDescription": "A root vegetable with a deep red color and earthy flavor."
+    },
+    {
+      "foodName": "bell pepper",
+      "foodCategory": "Vegetable",
+      "foodCalories": 31,
+      "foodSugar": 5,
+      "foodDescription": "A colorful vegetable with a crisp texture and sweet taste."
+    },
+    {
+      "foodName": "cabbage",
+      "foodCategory": "Vegetable",
+      "foodCalories": 25,
+      "foodSugar": 4,
+      "foodDescription": "A leafy vegetable with a mild and slightly sweet flavor."
+    },
+    {
+      "foodName": "capsicum",
+      "foodCategory": "Vegetable",
+      "foodCalories": 40,
+      "foodSugar": 6,
+      "foodDescription": "A variety of bell pepper that is commonly used in cooking."
+    },
+    {
+      "foodName": "carrot",
+      "foodCategory": "Vegetable",
+      "foodCalories": 41,
+      "foodSugar": 6,
+      "foodDescription": "A crunchy and sweet root vegetable that is high in beta-carotene."
+    },
+    {
+      "foodName": "cauliflower",
+      "foodCategory": "Vegetable",
+      "foodCalories": 25,
+      "foodSugar": 5,
+      "foodDescription": "A versatile vegetable that can be enjoyed raw or cooked."
+    },
+    {
+      "foodName": "chilli pepper",
+      "foodCategory": "Vegetable",
+      "foodCalories": 40,
+      "foodSugar": 3,
+      "foodDescription": "A hot and spicy pepper that adds heat to dishes."
+    },
+    {
+      "foodName": "corn",
+      "foodCategory": "Vegetable",
+      "foodCalories": 96,
+      "foodSugar": 6,
+      "foodDescription": "A sweet and starchy vegetable that is a popular ingredient in many cuisines."
+    },
+    {
+      "foodName": "cucumber",
+      "foodCategory": "Vegetable",
+      "foodCalories": 15,
+      "foodSugar": 2,
+      "foodDescription": "A refreshing and hydrating vegetable often used in salads."
+    },
+    {
+      "foodName": "eggplant",
+      "foodCategory": "Vegetable",
+      "foodCalories": 25,
+      "foodSugar": 3,
+      "foodDescription": "A purple vegetable with a creamy texture and mild taste."
+    },
+    {
+      "foodName": "garlic",
+      "foodCategory": "Vegetable",
+      "foodCalories": 149,
+      "foodSugar": 1,
+      "foodDescription": "A pungent bulb commonly used as a flavoring ingredient in various dishes."
+    },
+    {
+      "foodName": "ginger",
+      "foodCategory": "Root",
+      "foodCalories": 80,
+      "foodSugar": 2,
+      "foodDescription": "A spicy and aromatic root commonly used in Asian cuisine and herbal remedies."
+    },
+    {
+      "foodName": "grapes",
+      "foodCategory": "Fruit",
+      "foodCalories": 69,
+      "foodSugar": 16,
+      "foodDescription": "Small, juicy fruits that come in various colors and are often enjoyed as a snack or used in desserts."
+    },
+    {
+      "foodName": "jalepeno",
+      "foodCategory": "Vegetable",
+      "foodCalories": 29,
+      "foodSugar": 4,
+      "foodDescription": "A medium-sized chili pepper known for its moderate spiciness."
+    },
+    {
+      "foodName": "kiwi",
+      "foodCategory": "Fruit",
+      "foodCalories": 41,
+      "foodSugar": 9,
+      "foodDescription": "A small fruit with a fuzzy brown exterior and vibrant green flesh, known for its high vitamin C content."
+    },
+    {
+      "foodName": "lemon",
+      "foodCategory": "Citrus",
+      "foodCalories": 29,
+      "foodSugar": 2,
+      "foodDescription": "A sour citrus fruit commonly used for its juice and zest in cooking and beverages."
+    },
+    {
+      "foodName": "lettuce",
+      "foodCategory": "Vegetable",
+      "foodCalories": 5,
+      "foodSugar": 1,
+      "foodDescription": "A leafy green vegetable often used as a base for salads and sandwiches."
+    },
+    {
+      "foodName": "mango",
+      "foodCategory": "Fruit",
+      "foodCalories": 60,
+      "foodSugar": 14,
+      "foodDescription": "A tropical fruit with a sweet and juicy flesh that is commonly enjoyed fresh or in smoothies."
+    },
+    {
+      "foodName": "onion",
+      "foodCategory": "Vegetable",
+      "foodCalories": 40,
+      "foodSugar": 9,
+      "foodDescription": "A pungent and flavorful bulb vegetable commonly used as a base ingredient in many recipes."
+    },
+    {
+      "foodName": "orange",
+      "foodCategory": "Citrus",
+      "foodCalories": 43,
+      "foodSugar": 9,
+      "foodDescription": "A citrus fruit known for its bright orange color and refreshing, tangy flavor."
+    },
+    {
+      "foodName": "paprika",
+      "foodCategory": "Spice",
+      "foodCalories": 20,
+      "foodSugar": 2,
+      "foodDescription": "A powdered spice made from dried peppers, often used to add flavor and color to dishes."
+    },
+    {
+      "foodName": "pear",
+      "foodCategory": "Fruit",
+      "foodCalories": 57,
+      "foodSugar": 10,
+      "foodDescription": "A sweet and juicy fruit with a distinctive shape and smooth texture."
+    },
+    {
+      "foodName": "peas",
+      "foodCategory": "Vegetable",
+      "foodCalories": 81,
+      "foodSugar": 5,
+      "foodDescription": "Small, round green vegetables often used as a side dish or ingredient in soups and stews."
+    },
+    {
+      "foodName": "pineapple",
+      "foodCategory": "Fruit",
+      "foodCalories": 50,
+      "foodSugar": 9,
+      "foodDescription": "A tropical fruit with a sweet and tangy taste, commonly enjoyed fresh or in tropical-inspired dishes."
+    },
+    {
+      "foodName": "pomegranate",
+      "foodCategory": "Fruit",
+      "foodCalories": 83,
+      "foodSugar": 13,
+      "foodDescription": "A fruit with a leathery exterior and juicy seeds, known for its rich antioxidants and vibrant red color."
+    },
+    {
+      "foodName": "potato",
+      "foodCategory": "Vegetable",
+      "foodCalories": 130,
+      "foodSugar": 2,
+      "foodDescription": "A starchy root vegetable that is a staple in many cuisines and can be prepared in various ways."
+    },
+    {
+      "foodName": "raddish",
+      "foodCategory": "Vegetable",
+      "foodCalories": 16,
+      "foodSugar": 2,
+      "foodDescription": "A small root vegetable with a peppery flavor, often used in salads and pickled dishes."
+    },
+    {
+      "foodName": "soy beans",
+      "foodCategory": "Legume",
+      "foodCalories": 173,
+      "foodSugar": 7,
+      "foodDescription": "Edible beans with a high protein content, commonly used in various cuisines and as a source of plant-based protein."
+    },
+    {
+      "foodName": "spinach",
+      "foodCategory": "Vegetable",
+      "foodCalories": 23,
+      "foodSugar": 1,
+      "foodDescription": "A nutrient-dense leafy green vegetable that is often cooked or enjoyed raw in salads."
+    },
+    {
+      "foodName": "sweetcorn",
+      "foodCategory": "Vegetable",
+      "foodCalories": 86,
+      "foodSugar": 8,
+      "foodDescription": "A variety of corn with high sugar content, commonly used in salads, soups, and side dishes."
+    },
+    {
+      "foodName": "sweetpotato",
+      "foodCategory": "Vegetable",
+      "foodCalories": 86,
+      "foodSugar": 7,
+      "foodDescription": "A starchy and sweet root vegetable that is often baked, roasted, or used in desserts."
+    },
+    {
+      "foodName": "tomato",
+      "foodCategory": "Fruit",
+      "foodCalories": 18,
+      "foodSugar": 3,
+      "foodDescription": "A juicy and flavorful fruit that is commonly used in various dishes, including salads, sauces, and soups."
+    },
+    {
+      "foodName": "turnip",
+      "foodCategory": "Vegetable",
+      "foodCalories": 28,
+      "foodSugar": 6,
+      "foodDescription": "A root vegetable with a slightly peppery taste, often used in stews, roasts, and mashed dishes."
+    },
+    {
+      "foodName": "watermelon",
+      "foodCategory": "Fruit",
+      "foodCalories": 30,
+      "foodSugar": 6,
+      "foodDescription": "A refreshing and hydrating fruit with a sweet and juicy flesh, perfect for hot summer days."
+    }
+  ]
+}

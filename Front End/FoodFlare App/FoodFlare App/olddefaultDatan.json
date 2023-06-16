@@ -1,0 +1,19 @@
+{
+  "foodItems": [
+    {
+      "foodName": "white",
+      "foodCategory": "Headphones",
+      "foodCalories": 95,
+      "foodSugar": 19,
+      "foodDescription": "consequat duis sunt eiusmod proident duis laboris Lorem proident nulla enim veniam amet reprehenderit ex consectetur culpa reprehenderit sint ullamco reprehenderit sunt quis pariatur occaecat dolor ea Lorem non aliqua mollit id adipisicing officia mollit deserunt laborum Lorem occaecat occaecat dolore id tempor proident laboris qui fugiat officia exercitation amet"
+    },
+    {
+      "foodName": "black",
+      "foodCategory": "Headphones",
+      "foodCalories": 105,
+      "foodSugar": 17,
+      "foodDescription": "consequat duis sunt eiusmod proident duis laboris Lorem proident nulla enim veniam amet reprehenderit ex consectetur culpa reprehenderit sint ullamco reprehenderit sunt quis pariatur occaecat dolor ea Lorem non aliqua mollit id adipisicing officia mollit deserunt laborum Lorem occaecat occaecat dolore id tempor proident laboris qui fugiat officia exercitation amet"
+    }
+  ]
+}
+
