@@ -8,6 +8,7 @@ struct StatisticView: View {
         animation: .default)
     
     private var statisticItems: FetchedResults<Statistics>
+    
 
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -24,18 +25,26 @@ struct StatisticView: View {
                 Spacer()
             }
             VStack {
+                Text("Total Calories in Past 7 Days")
                 Chart {
-                    ForEach(statisticItems, id: \.self) { statistic in
+                    ForEach(statisticItems.reversed(), id: \.self) { statistic in
                         BarMark(
                             x: .value("Day", dateFormatter.string(from: statistic.date ?? Date())),
                             y: .value("Calories", Double(statistic.foodCalories))
                         )
-                        .foregroundStyle(by: .value("Shape Color", statistic.foodCategoryColor ?? ""))
+                        .foregroundStyle(by: .value("Shape Color", statistic.foodCategory ?? ""))
                     }
                 }
                 .chartForegroundStyleScale([
-                    "Green": .green, "Yellow": .yellow, "Red": .red
+                    "Fruit": Color.green,
+                    "Vegetable": Color.yellow,
+                    "Root": Color.brown,
+                    "Citrus": Color.yellow,
+                    "Spice": Color.orange,
+                    "Legume": Color.yellow,
+                    "Meat": Color.red
                 ])
+                .frame(height: 200) // Specify your desired width and height here.
                 HStack {
                     Text("Today")
                         .font(.footnote)
