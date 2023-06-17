@@ -24,14 +24,14 @@ struct FoodFlare_AppApp: App {
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         if launchedBefore  {
             print("App has been launched before.")
-            UserDefaults.standard.set(true, forKey: "launchedBefore")
-            return true
+            return false
         } else {
             print("App has not been launched before.")
             UserDefaults.standard.set(true, forKey: "launchedBefore")
-            return false
+            return true
         }
     }
+
 
     func loadData() {
         guard let url = Bundle.main.url(forResource: "defaultData", withExtension: "json") else {

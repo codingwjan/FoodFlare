@@ -127,6 +127,8 @@ struct DetectedItemView: View {
                                     do {
                                         try viewContext.save()
                                         print("Saved new statistics item: \(newStatistics)")
+                                        
+                                        
                                     } catch {
                                         let nsError = error as NSError
                                         fatalError("Unresolved error \(nsError), \(nsError.userInfo)")

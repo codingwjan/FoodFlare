@@ -15,7 +15,28 @@ struct StatisticView: View {
         animation: .default)
     private var statisticsItems: FetchedResults<Statistics>
 
-    @State var lastSevenDaysData: [StatisticWidget.Day] = []
+    @State private var changeCount = 0  // For observing CoreData changes
+
+    var lastSevenDaysData: [StatisticWidget.Day] {
+        var data: [StatisticWidget.Day] = []
+        let calendar = Calendar.current
+        var currentDate = calendar.startOfDay(for: Date())
+        
+        for _ in 1...7 {
+            let startOfDay = currentDate
+            let endOfDay = calendar.date(byAdding: .day, value: 1, to: currentDate)!
+            
+            let dayItems = statisticsItems.filter {
+                $0.date! >= startOfDay && $0.date! < endOfDay
+            }
+            
+            let totalCalories = dayItems.reduce(into: 0) { $0 + $1.foodCalories }
+            data.append(StatisticWidget.Day(id: startOfDay, totalCalories: totalCalories))
+            currentDate = calendar.date(byAdding: .day, value: -1, to: currentDate)!
+        }
+        
+        return data.reversed()
+    }
 
     var body: some View {
         VStack {
@@ -28,42 +49,18 @@ struct StatisticView: View {
             StatisticWidget(lastSevenDaysData: lastSevenDaysData)
         }
         .padding()
+        .onChange(of: changeCount) { _ in }
+        // To force SwiftUI to recalculate when the CoreData items change
+        ForEach(statisticsItems, id: \.objectID) { _ in
+            EmptyView()
+        }
         .onAppear {
-            calculateLastSevenDays()
+            changeCount += 1
         }
-    }
-    
-    func calculateLastSevenDays() {
-        // Get current date and start of day
-        let calendar = Calendar.current
-        var currentDate = calendar.startOfDay(for: Date())
-        // Array to hold last seven days' data
-        var data: [StatisticWidget.Day] = []
-        // For each of the last seven days
-        for _ in 1...7 {
-            // Calculate the start and end of the day
-            let startOfDay = currentDate
-            let endOfDay = calendar.date(byAdding: .day, value: 1, to: currentDate)!
-            // Filter the statistics items for the current day
-            let dayItems = statisticsItems.filter {
-                $0.date! >= startOfDay && $0.date! < endOfDay
-            }
-            // Calculate the total calories
-            let totalCalories = dayItems.reduce(into: 0) { $0 + $1.foodCalories }
-            // Get the day name
-            let formatter = DateFormatter()
-            formatter.dateFormat = "EEEE"  // Day of the week, e.g. "Wednesday"
-            let dayName = formatter.string(from: currentDate)
-            // Add the data to the array
-            data.append(StatisticWidget.Day(id: startOfDay, dayName: dayName, totalCalories: totalCalories))
-            // Move to the previous day
-            currentDate = calendar.date(byAdding: .day, value: -1, to: currentDate)!
-        }
-        // Assign the calculated data
-        lastSevenDaysData = data.reversed()  // Reverse the array to show the oldest day first
     }
 }
 
+    
 struct StatisticView_Previews: PreviewProvider {
     static var previews: some View {
         let viewContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
