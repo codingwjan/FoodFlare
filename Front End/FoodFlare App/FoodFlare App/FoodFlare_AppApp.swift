@@ -57,7 +57,7 @@ struct FoodFlare_AppApp: App {
                 foodItem.foodDescription = foodItemDict["foodDescription"] as? String
                 foodItem.foodCategoryColor = foodItemDict["foodCategoryColor"] as? String
 
-                print("Food Item: \(foodItem.foodName ?? ""), Category: \(foodItem.foodCategory ?? ""), Calories: \(foodItem.foodCalories), Sugar: \(foodItem.foodSugar) Color: \(foodItem.foodCategoryColor)")
+                print("Food Item: \(foodItem.foodName ?? ""), Category: \(foodItem.foodCategory ?? ""), Calories: \(foodItem.foodCalories), Sugar: \(foodItem.foodSugar) Color: \(String(describing: foodItem.foodCategoryColor))")
             }
 
             try context.save()

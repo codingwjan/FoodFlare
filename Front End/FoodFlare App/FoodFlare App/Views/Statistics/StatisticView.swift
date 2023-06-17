@@ -24,8 +24,11 @@ struct StatisticView: View {
                     .fontWeight(.bold)
                 Spacer()
             }
-            VStack {
-                Text("Total Calories in Past 7 Days")
+            VStack(alignment: .leading) {
+                Text("Total Energy in Past 7 Days")
+                Text("1040 Calories")
+                    .font(.title)
+                    .fontWeight(.bold)
                 Chart {
                     ForEach(statisticItems.reversed(), id: \.self) { statistic in
                         BarMark(
@@ -96,7 +99,7 @@ struct StatisticView: View {
             }
             .padding()
             .background(.quaternary)
-            .cornerRadius(15)
+            .cornerRadius(20)
         }
         .padding()
     }

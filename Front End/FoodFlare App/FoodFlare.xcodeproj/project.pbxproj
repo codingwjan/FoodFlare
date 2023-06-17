@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D261D6A2A3D981800C74D14 /* PersistenceControllerforpreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D261D692A3D981800C74D14 /* PersistenceControllerforpreview.swift */; };
 		3D2E5C0C2A38BF4700312FA5 /* FoodDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2E5C0B2A38BF4700312FA5 /* FoodDetails.swift */; };
 		3D4901652A3B3424008484FC /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4901642A3B3424008484FC /* HistoryView.swift */; };
 		3D5EAADE2A383EDD004DE112 /* FoodFlare_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5EAADD2A383EDD004DE112 /* FoodFlare_AppApp.swift */; };
@@ -30,7 +29,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3D261D692A3D981800C74D14 /* PersistenceControllerforpreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceControllerforpreview.swift; sourceTree = "<group>"; };
 		3D2E5C0B2A38BF4700312FA5 /* FoodDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetails.swift; sourceTree = "<group>"; };
 		3D4901642A3B3424008484FC /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		3D5EAADA2A383EDD004DE112 /* FoodFlare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodFlare.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,7 +93,6 @@
 			isa = PBXGroup;
 			children = (
 				3D5F43E42A3D00CB0042529A /* PersistenceController.swift */,
-				3D261D692A3D981800C74D14 /* PersistenceControllerforpreview.swift */,
 				3D8F6ADA2A3CB867000C1F77 /* FoodFlare Classification 1.mlmodel */,
 				3DC001382A3857A7002DBF11 /* FoodFlare-App-Info.plist */,
 				3D5EAAEC2A384697004DE112 /* Views */,
@@ -241,7 +238,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D5F43E32A3CDCD30042529A /* StatisticView.swift in Sources */,
-				3D261D6A2A3D981800C74D14 /* PersistenceControllerforpreview.swift in Sources */,
 				3D5EAAF92A384AE6004DE112 /* CameraView.swift in Sources */,
 				3D5EAAF62A3847CE004DE112 /* CreateButton.swift in Sources */,
 				3D5EAAE02A383EDD004DE112 /* ContentView.swift in Sources */,
