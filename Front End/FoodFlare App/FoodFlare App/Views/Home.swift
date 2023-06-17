@@ -27,21 +27,19 @@ struct Home: View {
     @StateObject private var titleAnimator = TitleAnimator()
     
     var body: some View {
-        VStack {
-            Text(titleAnimator.title) // Animated Title
-                .font(.largeTitle) // Make the font large
-                .fontWeight(.bold) // Make the font bold
-                .padding(.top) // Add padding to the top
-            ScrollView {
-                StatisticView()
-                HistoryView()
-                
+        NavigationView {
+            VStack {
+                ScrollView {
+                    StatisticView()
+                    HistoryView()
+                }
+                Spacer() // This will push the CreateButton down.
+                CreateButton()
+                    .padding(.horizontal)
             }
-            Spacer() // This will push the CreateButton down.
-            CreateButton()
-                .padding(.horizontal)
+            .frame(maxWidth: .infinity) // Make VStack take up full width
+            .navigationBarTitle(titleAnimator.title, displayMode: .large)
         }
-        .frame(maxWidth: .infinity) // Make VStack take up full width
     }
 }
 

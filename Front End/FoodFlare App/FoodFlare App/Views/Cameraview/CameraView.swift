@@ -217,7 +217,7 @@ struct CameraView: View {
                         let itemCalories = controller.itemCalories
                         let itemSugar = controller.itemSugar
                         let itemDescription = controller.itemDescription
-                        DetectedItemView(detectedItemName: detectedItem, shouldShowDetectedItemSheet: $controller.shouldShowDetectedItemSheet)
+                        HistoryItemView(detectedItemName: detectedItem, date: Date(), shouldShowDetectedItemSheet: $controller.shouldShowDetectedItemSheet)
 
                     }
                 }

@@ -21,7 +21,6 @@ struct FoodDetails: View {
                     print("dissmiss")
                 }, label: {
                     Image(systemName: "xmark")
-                        .foregroundColor(Color.black)
                 })
             }
             VStack(alignment: .leading) {

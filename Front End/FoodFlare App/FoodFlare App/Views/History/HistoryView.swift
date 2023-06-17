@@ -15,52 +15,66 @@ struct HistoryView: View {
         animation: .default)
     private var historyItems: FetchedResults<History>
     
+    @FetchRequest(entity: FoodItem.entity(), sortDescriptors: [])
+    private var foodItems: FetchedResults<FoodItem>
+    
+    
     @State private var showingClearAlert = false
     let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
     
+    private func deleteItem(_ item: History) {
+        viewContext.delete(item)
+        do {
+            try viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+    }
+    
+    private func saveItem(_ item: History) {
+        let newStatistics = Statistics(context: viewContext)
+        newStatistics.date = Date()
+        newStatistics.foodName = item.foodName
+        newStatistics.foodCategory = item.foodCategory
+        
+        if let foodItem = foodItems.first(where: { $0.foodName == item.foodName }) {
+            newStatistics.foodCalories = foodItem.foodCalories
+            newStatistics.foodSugar = foodItem.foodSugar
+            newStatistics.foodCategoryColor = foodItem.foodCategoryColor
+        }
+        
+        do {
+            try viewContext.save()
+            print("Saved new statistics item: \(newStatistics)")
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+    }
+    
+    
     var body: some View {
-        VStack {
-            HStack {
-                Text("History")
-                    .font(.title)
-                    .fontWeight(.bold)
-                Spacer()
-                if !historyItems.isEmpty {
-                    Button(action: {
-                        showingClearAlert = true
-                        feedbackGenerator.impactOccurred()
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            feedbackGenerator.impactOccurred()
-                            
+            VStack {
+                HStack {
+                    Text("History")
+                        .font(.title)
+                        .fontWeight(.bold)
+                    Spacer()
+                    if !historyItems.isEmpty {
+                        NavigationLink(destination: FullHistoryView()) {
+                            Text("Show more")
                         }
-                    }, label: {
-                        Text("Clear history")
-                    })
-                    .alert(isPresented: $showingClearAlert) {
-                        Alert(
-                            title: Text("Clear History"),
-                            message: Text("Are you sure you want to clear your history? This action cannot be undone."),
-                            primaryButton: .destructive(Text("Delete")) {
-                                for item in historyItems {
-                                    viewContext.delete(item)
-                                }
-                                do {
-                                    try viewContext.save()
-                                } catch {
-                                    let nsError = error as NSError
-                                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                                }
-                            },
-                            secondaryButton: .cancel()
-                        )
                     }
                 }
-            }
-            ForEach(Array(historyItems), id: \.objectID) { item in
-                HistoryWidget(foodName: item.foodName ?? "", foodCategory: item.foodCategory ?? "", date: item.date ?? Date())
-            }
+                ForEach(Array(historyItems.prefix(5)), id: \.self) { item in
+                    NavigationLink(destination: HistoryView() {
+                        HistoryWidget(foodName: item.foodName ?? "--", foodCategory: item.foodCategory ?? "--", date: item.date ?? Date())
+                    }
+                }
         }
         .padding()
+        
     }
 }
 

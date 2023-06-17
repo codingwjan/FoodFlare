@@ -34,9 +34,12 @@ struct HistoryWidget: View {
                     
             }
             Spacer()
-            Text("\(date, formatter: DateFormatter.onlyDate)") // format the date to a readable string
+            HStack {
+                Text("\(date, formatter: DateFormatter.onlyDate)") // format the date to a readable string
+                Image(systemName: "chevron.right")
+            }
         }
-        .padding(6.0)
+        .padding(10.0)
         .background(.quaternary)
         .cornerRadius(20)
         .onAppear {
