@@ -1,7 +1,19 @@
 import SwiftUI
+import Charts
 
 struct StatisticView: View {
-    @State private var lastSevenDaysData: [StatisticWidget.Day] = []
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Statistics.date, ascending: false)],
+        animation: .default)
+    
+    private var statisticItems: FetchedResults<Statistics>
+
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE" // day of the week
+        return formatter
+    }()
     
     var body: some View {
         VStack {
@@ -12,7 +24,18 @@ struct StatisticView: View {
                 Spacer()
             }
             VStack {
-                StatisticWidget(lastSevenDaysData: lastSevenDaysData)
+                Chart {
+                    ForEach(statisticItems, id: \.self) { statistic in
+                        BarMark(
+                            x: .value("Day", dateFormatter.string(from: statistic.date ?? Date())),
+                            y: .value("Calories", Double(statistic.foodCalories))
+                        )
+                        .foregroundStyle(by: .value("Shape Color", statistic.foodCategoryColor ?? ""))
+                    }
+                }
+                .chartForegroundStyleScale([
+                    "Green": .green, "Yellow": .yellow, "Red": .red
+                ])
                 HStack {
                     Text("Today")
                         .font(.footnote)
@@ -67,21 +90,6 @@ struct StatisticView: View {
             .cornerRadius(15)
         }
         .padding()
-        .onAppear(perform: loadData)
-    }
-
-    private func loadData() {
-        let calendar = Calendar.current
-        var currentDate = calendar.startOfDay(for: Date())
-
-        for _ in 1...7 {
-            let startOfDay = currentDate
-            let totalCalories = Int16.random(in: 500...2500)
-            lastSevenDaysData.append(StatisticWidget.Day(id: startOfDay, totalCalories: totalCalories))
-            currentDate = calendar.date(byAdding: .day, value: -1, to: currentDate)!
-        }
-
-        lastSevenDaysData = lastSevenDaysData.reversed()
     }
 }
 

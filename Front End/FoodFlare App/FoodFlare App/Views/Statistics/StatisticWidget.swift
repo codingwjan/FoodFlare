@@ -37,7 +37,6 @@ struct StatisticWidget: View {
         }
         .onAppear {
             print("Rendering StatisticWidget View")
-            print("Last seven days data: \(lastSevenDaysData)")
         }
     }
 }
