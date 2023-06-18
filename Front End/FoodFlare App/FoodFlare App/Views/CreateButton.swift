@@ -12,21 +12,40 @@ struct CreateButton: View {
     // Create a medium impact feedback generator
     private let impactGenerator = UIImpactFeedbackGenerator(style: .medium)
     
+    // Add a state property for the water amount
+    @State private var waterAmount: Double = 0.5
+    
     var body: some View {
-        NavigationLink(destination: CameraView()) {
-            Spacer()
-            Text("New Scan")
-                .font(.system(size: 20, weight: .regular, design: .default))
-                .foregroundColor(.white)
-            Spacer()
+        HStack {
+            NavigationLink(destination: CameraView()) {
+                Spacer()
+                Text("Add Food")
+                    .font(.system(size: 20, weight: .regular, design: .default))
+                    .foregroundColor(.white)
+                Spacer()
+            }
+            .padding(.vertical, 15.0)
+            .background(Color.blue)
+            .cornerRadius(17.0)
+            .frame(maxWidth: .infinity)
+            .simultaneousGesture(TapGesture().onEnded {
+                self.impactGenerator.impactOccurred()
+            })
+            NavigationLink(destination: AddWaterView(waterAmount: $waterAmount)) {
+                Spacer()
+                Text("Add Water")
+                    .font(.system(size: 20, weight: .regular, design: .default))
+                    .foregroundColor(.white)
+                Spacer()
+            }
+            .padding(.vertical, 15.0)
+            .background(Color.secondary)
+            .cornerRadius(17.0)
+            .frame(maxWidth: .infinity)
+            .simultaneousGesture(TapGesture().onEnded {
+                self.impactGenerator.impactOccurred()
+            })
         }
-        .padding(.vertical, 15.0)
-        .background(Color.blue)
-        .cornerRadius(17.0)
-        .frame(maxWidth: .infinity)
-        .simultaneousGesture(TapGesture().onEnded {
-            self.impactGenerator.impactOccurred()
-        })
     }
 }
 

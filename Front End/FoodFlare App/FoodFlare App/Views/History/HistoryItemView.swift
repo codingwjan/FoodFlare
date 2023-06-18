@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct HistoryItemView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -16,6 +17,8 @@ struct HistoryItemView: View {
     
     @Binding var shouldShowDetectedItemSheet: Bool
     @State var showDetailsSheet: Bool = false
+    
+    @Binding var isNewDetection: Bool
     
     
     var body: some View {
@@ -177,6 +180,11 @@ struct HistoryItemView: View {
         })
         .frame(maxWidth: .infinity) // Make VStack take up full width
         .navigationBarTitle("\(date, formatter: DateFormatter.onlyDate)", displayMode: .inline)
+        .onAppear(perform: {
+            if (isNewDetection == true) {
+                saveHistory()
+            }
+        })
     }
 }
 
@@ -188,10 +196,31 @@ extension String {
     }
 }
 
+private extension HistoryItemView {
+    func saveHistory() {
+        let newHistoryItem = History(context: viewContext)
+        newHistoryItem.foodName = detectedItemName
+        newHistoryItem.date = Date()
+
+        // Here we fetch the detected item from CoreData
+        if let detectedItem = foodItems.first(where: { $0.foodName == detectedItemName }) {
+            newHistoryItem.foodCategory = detectedItem.foodCategory
+        }
+
+        do {
+            try viewContext.save()
+            print("Saved new history item: \(newHistoryItem)")
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+    }
+}
+
                        
 
 struct HistoryItemView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryItemView(detectedItemName: "carrot", date: Date(), shouldShowDetectedItemSheet: .constant(false))
+        HistoryItemView(detectedItemName: "carrot", date: Date(), shouldShowDetectedItemSheet: .constant(false), isNewDetection: .constant(false))
     }
 }

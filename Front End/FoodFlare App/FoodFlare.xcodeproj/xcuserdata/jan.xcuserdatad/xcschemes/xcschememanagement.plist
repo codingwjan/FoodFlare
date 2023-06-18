@@ -14,10 +14,18 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>Statistics WidgetExtension.xcscheme_^#shared#^_</key>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>3D5EAAD92A383EDD004DE112</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>0</integer>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3DB1FA322A3E441800BB14AD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

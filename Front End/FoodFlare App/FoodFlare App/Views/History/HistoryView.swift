@@ -67,11 +67,12 @@ struct HistoryView: View {
                         }
                     }
                 }
-                ForEach(Array(historyItems.prefix(5)), id: \.self) { item in
-                    NavigationLink(destination: HistoryItemView(detectedItemName: item.foodName ?? "--", date: item.date ?? Date(), shouldShowDetectedItemSheet: .constant(false)))
+                ForEach(Array(historyItems).prefix(5), id: \.self) { item in
+                    NavigationLink(destination: HistoryItemView(detectedItemName: item.foodName ?? "--", date: item.date ?? Date(), shouldShowDetectedItemSheet: .constant(false), isNewDetection: .constant(false)))
                                    {
                         HistoryWidget(foodName: item.foodName ?? "--", foodCategory: item.foodCategory ?? "--", date: item.date ?? Date())
                     }
+                                   .foregroundStyle(Color.primary)
                 }
         }
         .padding()

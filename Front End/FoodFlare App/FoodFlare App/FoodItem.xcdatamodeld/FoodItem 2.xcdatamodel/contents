@@ -21,4 +21,8 @@
         <attribute name="foodName" optional="YES" attributeType="String"/>
         <attribute name="foodSugar" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="WaterStatistics" representedClassName="WaterStatistics" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="waterAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+    </entity>
 </model>

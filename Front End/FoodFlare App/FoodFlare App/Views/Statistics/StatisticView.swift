@@ -1,6 +1,7 @@
 import SwiftUI
 import CoreData
 import Charts
+import HealthKit
 
 struct StatisticView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -9,11 +10,62 @@ struct StatisticView: View {
         animation: .default)
     private var statisticItems: FetchedResults<Statistics>
     
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \WaterStatistics.date, ascending: false)],
+        animation: .default)
+    private var waterStatisticItems: FetchedResults<WaterStatistics>
+    
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE" // day of the week
         return formatter
     }()
+    
+    // Create a HealthKit store
+        let healthStore = HKHealthStore()
+        
+        @State private var todayBurned: Double = 0
+
+
+    func requestAuthorization() {
+        let typesToShare: Set = [HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!, HKObjectType.quantityType(forIdentifier: .dietaryWater)!, HKQuantityType.quantityType(forIdentifier: .dietaryEnergyConsumed)!]
+        let typesToRead: Set = [HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!]
+
+        healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { (success, error) in
+            if success {
+                self.loadCalories()
+            }
+        }
+    }
+
+    func loadCalories() {
+        let now = Date()
+        let startOfDay = Calendar.current.startOfDay(for: now)
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
+
+        let query = HKStatisticsQuery(quantityType: HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!,
+                                      quantitySamplePredicate: predicate,
+                                      options: .cumulativeSum)
+        { _, result, error in
+            if let result = result,
+               let sum = result.sumQuantity() {
+                DispatchQueue.main.async {
+                    self.todayBurned = sum.doubleValue(for: .kilocalorie())
+                    print(todayBurned)
+                }
+            } else {
+                print("Failed to fetch calories = \(error?.localizedDescription ?? "N/A")")
+            }
+        }
+
+        healthStore.execute(query)
+    }
+
+    init() {
+        requestAuthorization()
+    }
+
+
 
     // Added a computed property to calculate total calories for last 7 days
     var totalCalories: Int {
@@ -35,126 +87,21 @@ struct StatisticView: View {
         let startOfToday = Calendar.current.startOfDay(for: Date())
         return Int(statisticItems.filter { $0.date ?? Date() >= startOfToday }.reduce(0) { $0 + $1.foodSugar })
     }
+    
+    var todayWater: Double {
+        let startOfToday = Calendar.current.startOfDay(for: Date())
+        return Double(waterStatisticItems.filter { $0.date ?? Date() >= startOfToday }.reduce(0) { $0 + $1.waterAmount })
+    }
 
+    
     var body: some View {
         VStack {
-            VStack(alignment: .leading) {
-                Text("Today")
-                    .font(.title3)
-                    .fontWeight(.bold)
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("Calories")
-                        Text("\(todayCalories) cal")
-                            .font(.title)
-                            .fontWeight(.bold)
-                    }
-                    Spacer()
-                    VStack(alignment: .leading) {
-                        Text("Sugar")
-                        Text("\(todaySugar) g")
-                            .font(.title)
-                            .fontWeight(.bold)
-                    }
-                    Spacer()
-                }
-                .padding()
-                .background(.quaternary)
-                .cornerRadius(20)
-            }
-            VStack(alignment: .leading) {
-                Text("Weekly Calories")
-                    .font(.title3)
-                    .fontWeight(.bold)
-                VStack(alignment: .leading) {
-                    Text("Total Energy in Past 7 Days")
-                    Text("\(totalCalories) Calories")
-                        .font(.title)
-                        .fontWeight(.bold)
-                    createChartVertical(items: statisticItems, keyPath: \.foodCalories, xLabel: "Day", yLabel: "Calories")
-                }
-                .padding()
-                .background(.quaternary)
-                .cornerRadius(20)
-            }
-            .padding(.top)
-            VStack(alignment: .leading) {
-                Text("Weekly Sugar")
-                    .font(.title3)
-                    .fontWeight(.bold)
-                VStack(alignment: .leading) {
-                    Text("Total Sugar in Past 7 Days")
-                    Text("\(totalSugar) g")
-                        .font(.title)
-                        .fontWeight(.bold)
-                    createChartVertical(items: statisticItems, keyPath: \.foodSugar, xLabel: "Day", yLabel: "Sugar")
-                }
-                .padding()
-                .background(.quaternary)
-                .cornerRadius(20)
-            }
-            .padding(.top)
-            VStack(alignment: .leading) {
-                Text("Food Impact")
-                    .font(.title3)
-                    .fontWeight(.bold)
-                VStack(alignment: .leading) {
-                    Text("Food with the highest impact")
-                    Text("Banana")
-                        .font(.title)
-                        .fontWeight(.bold)
-                    createChartHorizontal(items: statisticItems, keyPath: \.foodName, xLabel: "Calories", yLabel: "Name")
-                    
-                }
-                .padding()
-                .background(.quaternary)
-                .cornerRadius(20)
-            }
-            .padding(.top)
+            TodayView(todayCalories: todayCalories, todayBurned: Int(todayBurned), todayWater: todayWater, todaySugar: todaySugar)
+            WeeklyCaloriesView(totalCalories: totalCalories)
+            WeeklySugarView(totalSugar: totalSugar)
+            FoodImpactView()
         }
         .padding()
-    }
-
-    
-    // New function to create chart
-    private func createChartVertical<T>(items: FetchedResults<Statistics>, keyPath: KeyPath<Statistics, T>, xLabel: String, yLabel: String) -> some View {
-        // Create a sorted version of statisticItems
-        let sortedItems = statisticItems.sorted { $0.foodCategory ?? "" < $1.foodCategory ?? "" }
-        
-        return Chart {
-            ForEach(sortedItems, id: \.self) { statistic in
-                BarMark(
-                    x: .value("Day", dateFormatter.string(from: statistic.date ?? Date())),
-                    y: .value("Calories", Double(statistic.foodCalories))
-                )
-                .foregroundStyle(by: .value("Shape Color", statistic.foodCategory ?? ""))
-            }
-        }
-        .frame(height: 200)
-    }
-    
-    private func createChartHorizontal<T>(items: FetchedResults<Statistics>, keyPath: KeyPath<Statistics, T>, xLabel: String, yLabel: String) -> some View {
-        // Create a dictionary where the keys are food items and the values are total calories per food item
-        var foodCalorieDict: [String: Double] = [:]
-        for item in statisticItems {
-            let food = item.foodName ?? "--"
-            let calories = Double(item.foodCalories)
-            foodCalorieDict[food, default: 0] += calories
-        }
-        
-        // Create an array of tuples (food, total calories) and sort it by total calories
-        let sortedItems = foodCalorieDict.sorted { $1.value < $0.value }
-        
-        return Chart {
-            ForEach(sortedItems, id: \.key) { food, totalCalories in
-                BarMark(
-                    x: .value("Calories", totalCalories),
-                    y: .value("Food", food)
-                )
-                .foregroundStyle(by: .value("Shape Color", statisticItems.first(where: { $0.foodName == food })?.foodCategory ?? ""))
-            }
-        }
-        .frame(height: 200)
     }
 }
 
