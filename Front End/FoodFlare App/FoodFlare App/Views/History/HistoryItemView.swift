@@ -20,10 +20,13 @@ struct HistoryItemView: View {
     
     @Binding var isNewDetection: Bool
     
+    func imageExists(_ imageName: String) -> Bool {
+            return UIImage(named: imageName) != nil
+        }
     
     var body: some View {
         let detectedItem = foodItems.first(where: { $0.foodName == detectedItemName })
-        
+        let formattedDetectedItemName = detectedItemName.replacingOccurrences(of: "_", with: " ").capitalized
         
         let calories = detectedItem?.foodCalories ?? 0
         
@@ -33,23 +36,27 @@ struct HistoryItemView: View {
         let weightLiftingTime = (Double(calories) / 300) * 90
         let squashTime = (Double(calories) / 400) * 30
         
+        let formattedFoodCategory = detectedItem?.foodCategory?.replacingOccurrences(of: "_", with: " ").capitalized ?? "default"
+        
         
         NavigationView(content: {
             ScrollView {
                 VStack {
                     ZStack {
-                        Image(detectedItemName)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(height: 400)
-                            .clipped()
-                            .edgesIgnoringSafeArea(.top)
+                        GeometryReader { geometry in
+                            Image(imageExists(detectedItemName) ? detectedItemName : "default")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: geometry.size.width, height: 400)
+                                .clipped()
+                        }
+                        .edgesIgnoringSafeArea(.top)
                         
                         
                         VStack {
                             Spacer()
                             VStack(alignment: .leading) {
-                                Text(detectedItemName)
+                                Text(String(formattedDetectedItemName))
                                     .font(.largeTitle)
                                     .textInputAutocapitalization(.characters)
                                     .fontWeight(.heavy)
@@ -57,7 +64,7 @@ struct HistoryItemView: View {
                                     .padding(.leading)
                                 
                                 HStack {
-                                    Text(detectedItem?.foodCategory ?? "default")
+                                    Text(formattedFoodCategory)
                                         .font(.title3)
                                         .fontWeight(.regular)
                                         .foregroundColor(Color.white)
@@ -168,7 +175,7 @@ struct HistoryItemView: View {
                     
                         .sheet(isPresented: $showDetailsSheet) {
                             // Replace "DetailsSheetView" with your custom sheet view
-                            FoodDetails(text: detectedItem?.foodDescription ?? "")
+                            FoodDetails(text: detectedItem?.foodDescription ?? "", showDetailsSheet: $showDetailsSheet)
                         }
                         .onTapGesture {
                             showDetailsSheet = true

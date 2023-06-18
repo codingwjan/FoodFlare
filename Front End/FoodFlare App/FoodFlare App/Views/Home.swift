@@ -30,7 +30,7 @@ struct Home: View {
     
     @State private var showingActionSheet = false
     @State private var pickerSelection = 1
-
+    
     @Environment(\.managedObjectContext) private var managedObjectContext
     
     func deleteAllData() {
@@ -38,7 +38,7 @@ struct Home: View {
         for entity in entities {
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
             let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-
+            
             do {
                 try managedObjectContext.execute(deleteRequest)
             } catch let error as NSError {
@@ -47,7 +47,7 @@ struct Home: View {
             }
         }
     }
-
+    
     
     var body: some View {
         NavigationView {
@@ -83,6 +83,7 @@ struct Home: View {
                 ])
             }
             .navigationTitle(titleAnimator.title)
+            .navigationBarTitleDisplayMode(.large)
         }
     }
 }

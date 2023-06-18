@@ -8,7 +8,9 @@ struct FullHistoryView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \History.date, ascending: false)],
         animation: .default)
     private var historyItems: FetchedResults<History>
-    
+
+    @State private var searchText = ""  // Search text state
+
     private func deleteItem(_ item: History) {
         viewContext.delete(item)
         do {
@@ -20,9 +22,15 @@ struct FullHistoryView: View {
     }
     
     var body: some View {
+        NavigationView {
             List {
+                // Filter items based on search text
+                let filteredItems = historyItems.filter {
+                    searchText.isEmpty || $0.foodName?.localizedCaseInsensitiveContains(searchText) == true
+                }
+                
                 // Group items by date
-                let groupedItems = Dictionary(grouping: historyItems) { (element: History)  in
+                let groupedItems = Dictionary(grouping: filteredItems) { (element: History)  in
                     return Calendar.current.startOfDay(for: element.date ?? Date())
                 }
                 
@@ -41,6 +49,10 @@ struct FullHistoryView: View {
                     }
                 }
             }
+        }
+        .navigationTitle("History")
+        .navigationBarTitleDisplayMode(.inline)
+        .searchable(text: $searchText)  // SwiftUI's built-in search bar
     }
     
     private let itemFormatter: DateFormatter = {

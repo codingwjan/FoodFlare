@@ -12,26 +12,30 @@ struct HistoryWidget: View {
     var foodCategory: String
     var date: Date
     
-
+    func imageExists(_ imageName: String) -> Bool {
+        return UIImage(named: imageName) != nil
+    }
 
     var body: some View {
+        let formattedFoodName = foodName.replacingOccurrences(of: "_", with: " ").capitalized
+        let formattedFoodCategory = foodCategory.replacingOccurrences(of: "_", with: " ").capitalized
+
         HStack {
-            Image(foodName)
+            Image(imageExists(foodName) ? foodName : "default")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 105.0, height: 70)
                 .clipped()
                 .cornerRadius(16)
             VStack(alignment: .leading) {
-                Text(foodName)
+                Text(formattedFoodName)
                     .font(.title2)
                     .fontWeight(.semibold)
-                    .textInputAutocapitalization(.words)
-                Text(foodCategory)
+                    .multilineTextAlignment(.leading)
+                Text(formattedFoodCategory)
                     .fontWeight(.light)
                     .foregroundColor(.secondary)
-                    .textInputAutocapitalization(.words)
-                    
+                    .multilineTextAlignment(.leading)
             }
             Spacer()
             HStack {
@@ -43,7 +47,7 @@ struct HistoryWidget: View {
         .background(.quaternary)
         .cornerRadius(20)
         .onAppear {
-            print("HistoryWidget appeared with foodName: \(foodName), foodCategory: \(foodCategory), date: \(date)")
+            print("HistoryWidget appeared with foodName: \(formattedFoodName), foodCategory: \(formattedFoodCategory), date: \(date)")
         }
     }
 }

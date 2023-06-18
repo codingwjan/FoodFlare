@@ -92,14 +92,20 @@ struct StatisticView: View {
         let startOfToday = Calendar.current.startOfDay(for: Date())
         return Double(waterStatisticItems.filter { $0.date ?? Date() >= startOfToday }.reduce(0) { $0 + $1.waterAmount })
     }
+    
+    var totalWater: Double {
+        let oneWeekAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date()
+        return Double(waterStatisticItems.filter { $0.date ?? Date() >= oneWeekAgo }.reduce(0) { $0 + $1.waterAmount })
+    }
 
     
     var body: some View {
         VStack {
             TodayView(todayCalories: todayCalories, todayBurned: Int(todayBurned), todayWater: todayWater, todaySugar: todaySugar)
             WeeklyCaloriesView(totalCalories: totalCalories)
-            WeeklySugarView(totalSugar: totalSugar)
+            WeeklyWaterView(totalWater: totalWater)
             FoodImpactView()
+            WeeklySugarView(totalSugar: totalSugar)
         }
         .padding()
     }

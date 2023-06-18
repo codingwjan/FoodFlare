@@ -20,7 +20,7 @@ struct WeeklyCaloriesView: View {
                 .font(.title3)
                 .fontWeight(.bold)
             VStack(alignment: .leading) {
-                Text("Total Energy in Past 7 Days")
+                Text("Total Energy in the past 7 Days")
                 Text("\(totalCalories) Calories")
                     .font(.title)
                     .fontWeight(.bold)

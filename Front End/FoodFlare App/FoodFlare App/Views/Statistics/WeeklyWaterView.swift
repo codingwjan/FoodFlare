@@ -8,23 +8,23 @@
 import SwiftUI
 import Charts
 
-struct WeeklySugarView: View {
-    let totalSugar: Int
+struct WeeklyWaterView: View {
+    let totalWater: Double
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Statistics.date, ascending: false)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \WaterStatistics.date, ascending: false)],
         animation: .default)
-    private var statisticItems: FetchedResults<Statistics>
+    private var waterStatisticItems: FetchedResults<WaterStatistics>
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Weekly Sugar")
+            Text("Weekly Water")
                 .font(.title3)
                 .fontWeight(.bold)
             VStack(alignment: .leading) {
-                Text("Total Sugar in the past 7 Days")
-                Text("\(totalSugar) g")
+                Text("Total Water in the past 7 Days")
+                Text("\(String(format: "%.2f", totalWater)) liters")
                     .font(.title)
                     .fontWeight(.bold)
-                createChartVertical(items: statisticItems, keyPath: \.foodSugar, xLabel: "Day", yLabel: "Sugar")
+                createChartVertical(items: waterStatisticItems, keyPath: \.waterAmount, xLabel: "Day", yLabel: "Water")
             }
             .padding()
             .background(.quaternary)
@@ -36,9 +36,7 @@ struct WeeklySugarView: View {
     
     
     // New function to create chart
-    private func createChartVertical<T>(items: FetchedResults<Statistics>, keyPath: KeyPath<Statistics, T>, xLabel: String, yLabel: String) -> some View {
-        // Create a sorted version of statisticItems
-        let sortedItems = statisticItems.sorted { $0.foodCategory ?? "" < $1.foodCategory ?? "" }
+    private func createChartVertical<T>(items: FetchedResults<WaterStatistics>, keyPath: KeyPath<WaterStatistics, T>, xLabel: String, yLabel: String) -> some View {
         let dateFormatter: DateFormatter = {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "EEEE" // day of the week
@@ -46,20 +44,20 @@ struct WeeklySugarView: View {
             }()
         
         return Chart {
-            ForEach(sortedItems, id: \.self) { statistic in
+            ForEach(items, id: \.self) { statistic in
                 BarMark(
                     x: .value("Day", dateFormatter.string(from: statistic.date ?? Date())),
-                    y: .value("Calories", Double(statistic.foodCalories))
+                    y: .value("Water", Double(statistic.waterAmount))
                 )
-                .foregroundStyle(by: .value("Shape Color", statistic.foodCategory ?? ""))
+                .foregroundStyle(Color.cyan)
             }
         }
         .frame(height: 200)
     }
 }
 
-struct WeeklySugarView_Previews: PreviewProvider {
+struct WeeklyWaterView_Previews: PreviewProvider {
     static var previews: some View {
-        WeeklySugarView(totalSugar: 15)
+        WeeklyWaterView(totalWater: 4.5)
     }
 }

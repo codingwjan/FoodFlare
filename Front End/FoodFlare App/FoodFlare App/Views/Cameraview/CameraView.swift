@@ -229,6 +229,8 @@ struct CameraView: View {
                 }
             })
         }
+        .navigationTitle("Add Food")
+        .navigationBarTitleDisplayMode(.large)
     }
 }
 
