@@ -22,51 +22,49 @@ struct StatisticView: View {
     }()
     
     // Create a HealthKit store
-        let healthStore = HKHealthStore()
-        
-        @State private var todayBurned: Double = 0
-
-
+    let healthStore = HKHealthStore()
+    
+    @State private var todayBurned: String = ""
+    
+    
     func requestAuthorization() {
         let typesToShare: Set = [HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!, HKObjectType.quantityType(forIdentifier: .dietaryWater)!, HKQuantityType.quantityType(forIdentifier: .dietaryEnergyConsumed)!]
         let typesToRead: Set = [HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!]
-
+        
         healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { (success, error) in
             if success {
                 self.loadCalories()
             }
         }
     }
-
+    
     func loadCalories() {
         let now = Date()
         let startOfDay = Calendar.current.startOfDay(for: now)
         let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
-
+        
         let query = HKStatisticsQuery(quantityType: HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!,
                                       quantitySamplePredicate: predicate,
                                       options: .cumulativeSum)
         { _, result, error in
             if let result = result,
                let sum = result.sumQuantity() {
+                let unit = HKUnit.kilocalorie()
+                let value = sum.doubleValue(for: unit)
+                print("burned calories \(value)")
                 DispatchQueue.main.async {
-                    self.todayBurned = sum.doubleValue(for: .kilocalorie())
-                    print(todayBurned)
+                    self.todayBurned = String(format: "%.0f", value)
                 }
             } else {
                 print("Failed to fetch calories = \(error?.localizedDescription ?? "N/A")")
             }
         }
-
+        
         healthStore.execute(query)
     }
-
-    init() {
-        requestAuthorization()
-    }
-
-
-
+    
+    
+    
     // Added a computed property to calculate total calories for last 7 days
     var totalCalories: Int {
         let oneWeekAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date()
@@ -82,7 +80,7 @@ struct StatisticView: View {
         let oneWeekAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date()
         return Int(statisticItems.filter { $0.date ?? Date() >= oneWeekAgo }.reduce(0) { $0 + $1.foodSugar })
     }
-
+    
     var todaySugar: Int {
         let startOfToday = Calendar.current.startOfDay(for: Date())
         return Int(statisticItems.filter { $0.date ?? Date() >= startOfToday }.reduce(0) { $0 + $1.foodSugar })
@@ -97,17 +95,20 @@ struct StatisticView: View {
         let oneWeekAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date()
         return Double(waterStatisticItems.filter { $0.date ?? Date() >= oneWeekAgo }.reduce(0) { $0 + $1.waterAmount })
     }
-
+    
     
     var body: some View {
         VStack {
-            TodayView(todayCalories: todayCalories, todayBurned: Int(todayBurned), todayWater: todayWater, todaySugar: todaySugar)
+            TodayView(todayCalories: todayCalories, todayBurned: todayBurned, todayWater: todayWater, todaySugar: todaySugar)
             WeeklyCaloriesView(totalCalories: totalCalories)
             WeeklyWaterView(totalWater: totalWater)
             FoodImpactView()
             WeeklySugarView(totalSugar: totalSugar)
         }
         .padding()
+        .onAppear {
+            requestAuthorization()
+        }
     }
 }
 

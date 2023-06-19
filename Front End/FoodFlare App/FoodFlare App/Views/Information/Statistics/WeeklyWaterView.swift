@@ -44,7 +44,7 @@ struct WeeklyWaterView: View {
             }()
         
         return Chart {
-            ForEach(items, id: \.self) { statistic in
+            ForEach(items.reversed(), id: \.self) { statistic in
                 BarMark(
                     x: .value("Day", dateFormatter.string(from: statistic.date ?? Date())),
                     y: .value("Water", Double(statistic.waterAmount))

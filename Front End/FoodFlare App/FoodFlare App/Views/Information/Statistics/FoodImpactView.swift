@@ -48,6 +48,7 @@ struct FoodImpactView: View {
             .background(.quaternary)
             .cornerRadius(20)
         }
+        .frame(height: 800)
         .padding(.top)
     }
 
@@ -71,7 +72,6 @@ struct FoodImpactView: View {
                     .foregroundStyle(by: .value("Shape Color", statisticItems.first(where: { $0.foodName == food })?.foodCategory ?? ""))
                 }
             }
-            .frame(height: 200)
         }
     }
 

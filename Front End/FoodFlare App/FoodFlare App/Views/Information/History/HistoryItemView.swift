@@ -186,12 +186,11 @@ struct HistoryItemView: View {
             .ignoresSafeArea()
         })
         .frame(maxWidth: .infinity) // Make VStack take up full width
-        .navigationBarTitle("\(date, formatter: DateFormatter.onlyDate)", displayMode: .inline)
-        .onAppear(perform: {
-            if (isNewDetection == true) {
-                saveHistory()
-            }
-        })
+                .onAppear(perform: {
+                    if (isNewDetection == true) {
+                        saveHistory()
+                    }
+                })
     }
 }
 

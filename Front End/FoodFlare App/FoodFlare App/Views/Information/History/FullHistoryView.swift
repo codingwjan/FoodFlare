@@ -37,14 +37,16 @@ struct FullHistoryView: View {
                 ForEach(groupedItems.sorted(by: { $0.key > $1.key }), id: \.key) { key, values in
                     Section(header: Text("\(key, formatter: itemFormatter)")) {
                         ForEach(values, id: \.self) { item in
-                            Text(item.foodName ?? "")
-                                .swipeActions(edge: .trailing) {
-                                    Button(role: .destructive) {
-                                        deleteItem(item)
-                                    } label: {
-                                        Label("Delete", systemImage: "trash")
+                            NavigationLink(destination: HistoryItemView(detectedItemName: item.foodName ?? "--", date: item.date ?? Date(), shouldShowDetectedItemSheet: .constant(false), isNewDetection: .constant(false))) {
+                                Text(item.foodName ?? "")
+                                    .swipeActions(edge: .trailing) {
+                                        Button(role: .destructive) {
+                                            deleteItem(item)
+                                        } label: {
+                                            Label("Delete", systemImage: "trash")
+                                        }
                                     }
-                                }
+                            }
                         }
                     }
                 }

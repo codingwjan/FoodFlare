@@ -29,9 +29,14 @@ struct Home: View {
     @StateObject private var titleAnimator = TitleAnimator()
     
     @State private var showingActionSheet = false
-    @State private var pickerSelection = 1
+    @State private var pickerSelection: Int? = 1
     
     @Environment(\.managedObjectContext) private var managedObjectContext
+    
+    
+    @State private var waterAmount: Double = 0.5
+    
+    
     
     func deleteAllData() {
         let entities = ["History", "Statistics", "WaterStatistics", "FoodItem"]
@@ -50,41 +55,43 @@ struct Home: View {
     
     
     var body: some View {
-        NavigationView {
-            VStack {
-                ScrollView {
-                    StatisticView()
-                    HistoryView()
-                    
+            TabView {
+                VStack {
+                    ScrollView {
+                        StatisticView()
+                        HistoryView()
+                        NavigationLink(destination: ManualItemAddView()) {
+                            Text("Manual Add Item")
+                        }
+                        
+                    }
                 }
-                Spacer() // This will push the CreateButton down.
-                CreateButton()
-                    .padding(.horizontal)
-            }
-            .frame(maxWidth: .infinity) // Make VStack take up full width
-            .toolbar(content: {
-                Button(action: {
-                    feedbackGeneratorMedium.impactOccurred()
-                    showingActionSheet = true
-                }) {
-                    Image(systemName: "ellipsis")
+                .badge(2)
+                .tabItem {
+                    Label("Home", systemImage: "house")
                 }
-            })
-            .actionSheet(isPresented: $showingActionSheet) {
-                ActionSheet(title: Text("Select an option"), buttons: [
-                    .default(Text("Add Food"), action: { pickerSelection = 1 }),
-                    .default(Text("Add Liquid"), action: { pickerSelection = 2 }),
-                    .default(Text("Add Weight"), action: { pickerSelection = 3 }),
-                    .default(Text("Delete Data"), action: {
-                        pickerSelection = 4
-                        deleteAllData()
-                    }),
-                    .cancel()
-                ])
+                ManualItemAddView()
+                    .tabItem {
+                        Label("Food" , systemImage: "carrot.fill")
+                    }
+                CameraView()
+                    .tabItem {
+                        Label("Scan", systemImage: "camera")
+                    }
+                    .tabViewStyle(.automatic)
+                AddWaterView(waterAmount: $waterAmount)
+                    .tabItem {
+                        Label("Water", systemImage: "drop.fill")
+                    }
+                    .tabViewStyle(.automatic)
+                InformationView()
+                    .badge("!")
+                    .tabItem {
+                        Label("Information", systemImage: "person")
+                    }
             }
-            .navigationTitle(titleAnimator.title)
-            .navigationBarTitleDisplayMode(.large)
-        }
+        .navigationTitle(titleAnimator.title)
+        .navigationBarTitleDisplayMode(.large)
     }
 }
 

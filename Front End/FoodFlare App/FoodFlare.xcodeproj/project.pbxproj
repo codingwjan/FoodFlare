@@ -24,6 +24,9 @@
 		3D7993EB2A3F39A8007B4AE3 /* FoodImpactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7993EA2A3F39A8007B4AE3 /* FoodImpactView.swift */; };
 		3D7993ED2A3F3A4A007B4AE3 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7993EC2A3F3A4A007B4AE3 /* TodayView.swift */; };
 		3D7993F02A3F417D007B4AE3 /* AddWaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7993EF2A3F417D007B4AE3 /* AddWaterView.swift */; };
+		3D850EC62A4051E700E29208 /* ManualItemAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D850EC52A4051E700E29208 /* ManualItemAddView.swift */; };
+		3D850EC82A40C9F900E29208 /* WaterSizeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D850EC72A40C9F900E29208 /* WaterSizeButton.swift */; };
+		3D850ECD2A40DF2600E29208 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D850ECC2A40DF2600E29208 /* InformationView.swift */; };
 		3D9E30702A3AFE7000C424D7 /* olddefaultDatan.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D9E306F2A3AFE7000C424D7 /* olddefaultDatan.json */; };
 		3D9E307C2A3B13ED00C424D7 /* FoodItem.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3D9E307A2A3B13ED00C424D7 /* FoodItem.xcdatamodeld */; };
 		3DAF6ED92A399BAB0004C024 /* ItemBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAF6ED82A399BAB0004C024 /* ItemBoxView.swift */; };
@@ -68,6 +71,9 @@
 		3D7993EA2A3F39A8007B4AE3 /* FoodImpactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodImpactView.swift; sourceTree = "<group>"; };
 		3D7993EC2A3F3A4A007B4AE3 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		3D7993EF2A3F417D007B4AE3 /* AddWaterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWaterView.swift; sourceTree = "<group>"; };
+		3D850EC52A4051E700E29208 /* ManualItemAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualItemAddView.swift; sourceTree = "<group>"; };
+		3D850EC72A40C9F900E29208 /* WaterSizeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterSizeButton.swift; sourceTree = "<group>"; };
+		3D850ECC2A40DF2600E29208 /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
 		3D9E306F2A3AFE7000C424D7 /* olddefaultDatan.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = olddefaultDatan.json; sourceTree = "<group>"; };
 		3D9E307B2A3B13ED00C424D7 /* FoodItem.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FoodItem.xcdatamodel; sourceTree = "<group>"; };
 		3DAF6ED82A399BAB0004C024 /* ItemBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemBoxView.swift; sourceTree = "<group>"; };
@@ -150,11 +156,10 @@
 		3D5EAAEC2A384697004DE112 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3D850ECB2A40DF1600E29208 /* Information */,
 				3D7993EE2A3F416F007B4AE3 /* Water */,
 				3DAF6ED42A399B350004C024 /* Itemview */,
 				3D5EAAF72A384AD9004DE112 /* Cameraview */,
-				3D5EAAF22A38477E004DE112 /* History */,
-				3D5EAAED2A3846B1004DE112 /* Statistics */,
 				3D5EAAF02A38472D004DE112 /* Home.swift */,
 				3D5EAAF52A3847CE004DE112 /* CreateButton.swift */,
 			);
@@ -197,8 +202,19 @@
 			isa = PBXGroup;
 			children = (
 				3D7993EF2A3F417D007B4AE3 /* AddWaterView.swift */,
+				3D850EC72A40C9F900E29208 /* WaterSizeButton.swift */,
 			);
 			path = Water;
+			sourceTree = "<group>";
+		};
+		3D850ECB2A40DF1600E29208 /* Information */ = {
+			isa = PBXGroup;
+			children = (
+				3D5EAAF22A38477E004DE112 /* History */,
+				3D5EAAED2A3846B1004DE112 /* Statistics */,
+				3D850ECC2A40DF2600E29208 /* InformationView.swift */,
+			);
+			path = Information;
 			sourceTree = "<group>";
 		};
 		3DAF6ED42A399B350004C024 /* Itemview */ = {
@@ -206,6 +222,7 @@
 			children = (
 				3DAF6ED82A399BAB0004C024 /* ItemBoxView.swift */,
 				3D2E5C0A2A38BF3800312FA5 /* FoodDetails */,
+				3D850EC52A4051E700E29208 /* ManualItemAddView.swift */,
 			);
 			path = Itemview;
 			sourceTree = "<group>";
@@ -299,8 +316,10 @@
 				3D5F43E32A3CDCD30042529A /* StatisticView.swift in Sources */,
 				3DC167492A3F707600B18F80 /* FoodFlare Classification 1.mlmodel in Sources */,
 				3D5EAAF92A384AE6004DE112 /* CameraView.swift in Sources */,
+				3D850EC62A4051E700E29208 /* ManualItemAddView.swift in Sources */,
 				3D5EAAF62A3847CE004DE112 /* CreateButton.swift in Sources */,
 				3D7993F02A3F417D007B4AE3 /* AddWaterView.swift in Sources */,
+				3D850EC82A40C9F900E29208 /* WaterSizeButton.swift in Sources */,
 				3D5EAAE02A383EDD004DE112 /* ContentView.swift in Sources */,
 				3DAF6ED92A399BAB0004C024 /* ItemBoxView.swift in Sources */,
 				3D9E307C2A3B13ED00C424D7 /* FoodItem.xcdatamodeld in Sources */,
@@ -310,6 +329,7 @@
 				3D2E5C0C2A38BF4700312FA5 /* FoodDetails.swift in Sources */,
 				3D5EAAF42A38478B004DE112 /* HistoryWidget.swift in Sources */,
 				3DB1FA292A3E274800BB14AD /* HistoryItemView.swift in Sources */,
+				3D850ECD2A40DF2600E29208 /* InformationView.swift in Sources */,
 				3DB3CA712A3C9FF7001613B3 /* ResilientImage.swift in Sources */,
 				3D5EAADE2A383EDD004DE112 /* FoodFlare_AppApp.swift in Sources */,
 				3D7993ED2A3F3A4A007B4AE3 /* TodayView.swift in Sources */,

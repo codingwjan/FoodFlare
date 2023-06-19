@@ -10,7 +10,7 @@ import HealthKit
 
 struct TodayView: View {
     let todayCalories: Int
-    let todayBurned: Int
+    let todayBurned: String
     let todayWater: Double
     let todaySugar: Int
     
@@ -69,6 +69,6 @@ struct TodayView: View {
 
 struct TodayView_Previews: PreviewProvider {
     static var previews: some View {
-        TodayView(todayCalories: 15, todayBurned: 12, todayWater: 0.75, todaySugar: 15)
+        TodayView(todayCalories: 15, todayBurned: "12", todayWater: 0.75, todaySugar: 15)
     }
 }
