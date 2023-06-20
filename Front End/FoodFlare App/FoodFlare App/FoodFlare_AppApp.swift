@@ -24,7 +24,7 @@ struct FoodFlare_AppApp: App {
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         if launchedBefore  {
             print("App has been launched before.")
-            return true
+            return false
         } else {
             print("App has not been launched before.")
             UserDefaults.standard.set(true, forKey: "launchedBefore")

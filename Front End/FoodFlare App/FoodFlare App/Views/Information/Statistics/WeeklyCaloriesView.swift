@@ -36,14 +36,14 @@ struct WeeklyCaloriesView: View {
     
     // New function to create chart
     private func createChartVertical<T>(items: FetchedResults<Statistics>, keyPath: KeyPath<Statistics, T>, xLabel: String, yLabel: String) -> some View {
-        // Create a sorted version of statisticItems
-        let sortedItems = statisticItems.sorted { $0.foodCategory ?? "" < $1.foodCategory ?? "" }
+        // Sort statisticItems by date
+        let sortedItems = items.sorted { $0.date ?? Date() < $1.date ?? Date() }
         let dateFormatter: DateFormatter = {
-                let formatter = DateFormatter()
-                formatter.dateFormat = "EEEE" // day of the week
-                return formatter
-            }()
-        
+            let formatter = DateFormatter()
+            formatter.dateFormat = "EEEE" // day of the week
+            return formatter
+        }()
+            
         return Chart {
             ForEach(sortedItems, id: \.self) { statistic in
                 BarMark(
@@ -53,7 +53,7 @@ struct WeeklyCaloriesView: View {
                 .foregroundStyle(by: .value("Shape Color", statistic.foodCategory ?? ""))
             }
         }
-        .frame(height: 200)
+        .frame(height: 300)
     }
 }
 

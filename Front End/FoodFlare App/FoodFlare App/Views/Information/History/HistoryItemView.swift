@@ -18,6 +18,8 @@ struct HistoryItemView: View {
     @Binding var shouldShowDetectedItemSheet: Bool
     @State var showDetailsSheet: Bool = false
     
+    let confirmationGenerator = UINotificationFeedbackGenerator()
+    
     @Binding var isNewDetection: Bool
     
     func imageExists(_ imageName: String) -> Bool {
@@ -125,6 +127,7 @@ struct HistoryItemView: View {
                         
                         do {
                             try viewContext.save()
+                            confirmationGenerator.notificationOccurred(.success)
                             print("Saved new statistics item: \(newStatistics)")
                             
                             
@@ -145,15 +148,23 @@ struct HistoryItemView: View {
                             .cornerRadius(17.0)
                     }
                     Button(action: {
-                        print("button pressed")
+                        // Toggle favorite status and save context
+                        detectedItem?.isFavourite.toggle()
+                        do {
+                            try viewContext.save()
+                            confirmationGenerator.notificationOccurred(.success)
+                        } catch {
+                            let nsError = error as NSError
+                            print("Unresolved error \(nsError), \(nsError.userInfo)")
+                        }
                     }) {
-                        Text("Share")
+                        Text(detectedItem?.isFavourite == true ? "Favorited" : "Add to Favorites")
                             .font(.system(size: 20, weight: .regular, design: .default))
                             .fontWeight(.regular)
                             .padding(.vertical, 15.0)
                             .padding(.horizontal, 20.0)
                             .frame(maxWidth: .infinity)
-                            .background(Color.secondary)
+                            .background(detectedItem?.isFavourite == true ? Color.orange : Color.gray)
                             .accentColor(.white)
                             .cornerRadius(17.0)
                     }

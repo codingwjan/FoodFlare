@@ -29,59 +29,88 @@ struct AddWaterView: View {
         }
     }
     var body: some View {
-        NavigationView {
-            VStack(alignment: .leading) {
-                
-                Text("\(String(format: "%.2f", waterAmount)) L")
-                    .font(.title)
-                
-                Slider(value: $waterAmount, in: 0...2, step: 0.05, onEditingChanged: { _ in
-                    let roundedValue = (waterAmount * 100).rounded() / 100
-                    waterAmount = roundedValue
-                    
-                    if roundedValue.truncatingRemainder(dividingBy: 0.05) == 0 {
-                        generatorLight.impactOccurred()
-                    }
-                    
-                    if roundedValue.truncatingRemainder(dividingBy: 0.25) == 0 {
-                        generatorHeavy.impactOccurred()
-                    }
-                })
-                .accentColor(.blue)
-                .padding(.top, 20)
-                
-                Button(action: {
-                    let waterStats = WaterStatistics(context: self.managedObjectContext)
-                    waterStats.waterAmount = self.waterAmount
-                    waterStats.date = Date()
-                    
-                    do {
-                        try self.managedObjectContext.save()
-                        self.showConfirmation = true
-                        confirmationGenerator.notificationOccurred(.success)
-                        saveWaterToHealthKit()
-                    } catch {
-                        print("Failed to save water amount: \(error)")
-                    }
-                }) {
-                    Text("Add Water")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                }
-                .padding(.top, 20)
-                .alert(isPresented: $showConfirmation) {
-                    Alert(title: Text("Saved Successfully"), message: Text("Your water consumption has been saved."), dismissButton: .default(Text("OK")))
-                }
+            ScrollView {
                 Spacer()
-            }
-            .padding()
-        }
+                    HStack {
+                        Button(action: {
+                            generatorLight.impactOccurred()
+                            self.waterAmount = max(self.waterAmount - 0.05, 0)
+                        }) {
+                            Image(systemName: "minus.circle.fill")
+                                .font(.system(size: 40))
+                                .foregroundColor(Color.secondary)
+                        }
+                        .gesture(LongPressGesture(minimumDuration: 0.5).onEnded {_ in
+                            generatorLight.impactOccurred()
+                            self.waterAmount = max(self.waterAmount - 0.05, 0)
+                        })
+                        
+                        Text("\(String(format: "%.2f", waterAmount)) L")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .padding(.horizontal)
+                        
+                        Button(action: {
+                            generatorLight.impactOccurred()
+                            self.waterAmount += 0.25
+                        }) {
+                            Image(systemName: "plus.circle.fill")
+                                .font(.system(size: 40))
+                                .foregroundColor(Color.secondary)
+                        }
+                        .gesture(LongPressGesture(minimumDuration: 0.5).onEnded {_ in
+                            generatorLight.impactOccurred()
+                            self.waterAmount += 0.05
+                        })
+                    }
+                    
+                    
+                    Button(action: {
+                        let waterStats = WaterStatistics(context: self.managedObjectContext)
+                        waterStats.waterAmount = self.waterAmount
+                        waterStats.date = Date()
+                        
+                        do {
+                            try self.managedObjectContext.save()
+                            self.showConfirmation = true
+                            confirmationGenerator.notificationOccurred(.success)
+                            saveWaterToHealthKit()
+                        } catch {
+                            print("Failed to save water amount: \(error)")
+                        }
+                    }) {
+                        Text("Add Water")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                    }
+                    .padding(.top, 20)
+                    Spacer()
+                    let gridLayout = [
+                        GridItem(.flexible()),
+                        GridItem(.flexible())
+                    ]
+                    
+                    VStack {
+                        LazyVGrid(columns: gridLayout, spacing: 10) {
+                            WaterSizeButton(iconName: "wineglass.fill", waterAmount: 0.1) // 100ml
+                            WaterSizeButton(iconName: "cup.and.saucer.fill", waterAmount: 0.25) // 250ml
+                            WaterSizeButton(iconName: "mug.fill", waterAmount: 0.4) // 400ml
+                            WaterSizeButton(iconName: "mug.fill", waterAmount: 0.5) // 500ml
+                            WaterSizeButton(iconName: "waterbottle.fill", waterAmount: 1) // 1L
+                            WaterSizeButton(iconName: "waterbottle.fill", waterAmount: 2) // 2L
+                        }
+                        .padding(.top, 30.0)
+                        Spacer()
+                    }
+                    .padding()
+                }
         .navigationTitle("Water")
         .navigationBarTitleDisplayMode(.large)
     }
+    
 }
 
 

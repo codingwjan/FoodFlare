@@ -22,7 +22,6 @@ struct FullHistoryView: View {
     }
     
     var body: some View {
-        NavigationView {
             List {
                 // Filter items based on search text
                 let filteredItems = historyItems.filter {
@@ -51,9 +50,8 @@ struct FullHistoryView: View {
                     }
                 }
             }
-        }
         .navigationTitle("History")
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitleDisplayMode(.large)
         .searchable(text: $searchText)  // SwiftUI's built-in search bar
     }
     

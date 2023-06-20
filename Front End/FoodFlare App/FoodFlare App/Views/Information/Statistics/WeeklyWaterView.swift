@@ -37,23 +37,29 @@ struct WeeklyWaterView: View {
     
     // New function to create chart
     private func createChartVertical<T>(items: FetchedResults<WaterStatistics>, keyPath: KeyPath<WaterStatistics, T>, xLabel: String, yLabel: String) -> some View {
-        let dateFormatter: DateFormatter = {
-                let formatter = DateFormatter()
-                formatter.dateFormat = "EEEE" // day of the week
-                return formatter
-            }()
-        
+        let daysOfTheWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+
         return Chart {
-            ForEach(items.reversed(), id: \.self) { statistic in
+            ForEach(0..<7, id: \.self) { dayIndex in
+                // If a statistic exists for the given day of the week, get the water amount.
+                // Otherwise, use a water amount of 0.
+                let statisticForDay = items.first(where: {
+                    let weekday = Calendar.current.component(.weekday, from: $0.date ?? Date())
+                    // Adjust index because Calendar component .weekday starts with 1 for Sunday.
+                    return (weekday % 7) == dayIndex
+                })
+                let waterAmount = Double(statisticForDay?.waterAmount ?? 0)
+
                 BarMark(
-                    x: .value("Day", dateFormatter.string(from: statistic.date ?? Date())),
-                    y: .value("Water", Double(statistic.waterAmount))
+                    x: .value("Day", daysOfTheWeek[dayIndex]),
+                    y: .value("Water", waterAmount)
                 )
                 .foregroundStyle(Color.cyan)
             }
         }
-        .frame(height: 200)
+        .frame(height: 300)
     }
+
 }
 
 struct WeeklyWaterView_Previews: PreviewProvider {

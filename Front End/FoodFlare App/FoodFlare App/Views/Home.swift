@@ -33,64 +33,14 @@ struct Home: View {
     
     @Environment(\.managedObjectContext) private var managedObjectContext
     
-    
     @State private var waterAmount: Double = 0.5
     
-    
-    
-    func deleteAllData() {
-        let entities = ["History", "Statistics", "WaterStatistics", "FoodItem"]
-        for entity in entities {
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
-            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-            
-            do {
-                try managedObjectContext.execute(deleteRequest)
-            } catch let error as NSError {
-                print("Error: \(error.localizedDescription)")
-                return
-            }
-        }
-    }
-    
-    
     var body: some View {
-            TabView {
-                VStack {
-                    ScrollView {
-                        StatisticView()
-                        HistoryView()
-                        NavigationLink(destination: ManualItemAddView()) {
-                            Text("Manual Add Item")
-                        }
-                        
-                    }
-                }
-                .badge(2)
-                .tabItem {
-                    Label("Home", systemImage: "house")
-                }
-                ManualItemAddView()
-                    .tabItem {
-                        Label("Food" , systemImage: "carrot.fill")
-                    }
-                CameraView()
-                    .tabItem {
-                        Label("Scan", systemImage: "camera")
-                    }
-                    .tabViewStyle(.automatic)
-                AddWaterView(waterAmount: $waterAmount)
-                    .tabItem {
-                        Label("Water", systemImage: "drop.fill")
-                    }
-                    .tabViewStyle(.automatic)
-                InformationView()
-                    .badge("!")
-                    .tabItem {
-                        Label("Information", systemImage: "person")
-                    }
-            }
-        .navigationTitle(titleAnimator.title)
+        ScrollView {
+            StatisticView()
+            HistoryView()
+        }
+        .navigationTitle("Food Flare")
         .navigationBarTitleDisplayMode(.large)
     }
 }

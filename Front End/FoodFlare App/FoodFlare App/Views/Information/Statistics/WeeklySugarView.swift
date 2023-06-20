@@ -37,24 +37,27 @@ struct WeeklySugarView: View {
     
     // New function to create chart
     private func createChartVertical<T>(items: FetchedResults<Statistics>, keyPath: KeyPath<Statistics, T>, xLabel: String, yLabel: String) -> some View {
-        // Create a sorted version of statisticItems
-        let sortedItems = statisticItems.sorted { $0.foodCategory ?? "" < $1.foodCategory ?? "" }
-        let dateFormatter: DateFormatter = {
-                let formatter = DateFormatter()
-                formatter.dateFormat = "EEEE" // day of the week
-                return formatter
-            }()
-        
+        let daysOfTheWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+
         return Chart {
-            ForEach(sortedItems, id: \.self) { statistic in
+            ForEach(0..<7, id: \.self) { dayIndex in
+                // If a statistic exists for the given day of the week, get the food calories.
+                // Otherwise, use a calories amount of 0.
+                let statisticForDay = items.first(where: {
+                    let weekday = Calendar.current.component(.weekday, from: $0.date ?? Date())
+                    // Adjust index because Calendar component .weekday starts with 1 for Sunday.
+                    return (weekday % 7) == dayIndex
+                })
+                let foodCalories = Double(statisticForDay?.foodCalories ?? 0)
+
                 BarMark(
-                    x: .value("Day", dateFormatter.string(from: statistic.date ?? Date())),
-                    y: .value("Calories", Double(statistic.foodCalories))
+                    x: .value("Day", daysOfTheWeek[dayIndex]),
+                    y: .value("Calories", foodCalories)
                 )
-                .foregroundStyle(by: .value("Shape Color", statistic.foodCategory ?? ""))
+                .foregroundStyle(Color.blue)
             }
         }
-        .frame(height: 200)
+        .frame(height: 300)
     }
 }
 

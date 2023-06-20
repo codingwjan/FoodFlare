@@ -27,8 +27,17 @@ struct ManualItemAddView: View {
         }
     }
     
+    private func favoriteItem(_ item: FoodItem) {
+        item.isFavourite.toggle()
+        do {
+            try viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            print("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+    }
+    
     var body: some View {
-        NavigationView {
             List {
                 // Filter items based on search text
                 let filteredItems = foodItems.filter {
@@ -41,15 +50,14 @@ struct ManualItemAddView: View {
                 }
                 
                 ForEach(groupedItems.keys.sorted(), id: \.self) { key in
-                    if let items = groupedItems[key] {
-                        SectionView(title: key, items: items, deleteAction: deleteItem)
-                    }
-                }
+                                if let items = groupedItems[key] {
+                                    SectionView(title: key, items: items, deleteAction: deleteItem, favoriteAction: favoriteItem)  // Provide favoriteAction here
+                                }
+                            }
             }
-        }
-        .navigationTitle("Food")
-        .navigationBarTitleDisplayMode(.inline)
         .searchable(text: $searchText)  // SwiftUI's built-in search bar
+        .navigationTitle("Food")
+        .navigationBarTitleDisplayMode(.large)
     }
 }
 
@@ -57,12 +65,14 @@ struct SectionView: View {
     let title: String
     let items: [FoodItem]
     let deleteAction: (FoodItem) -> Void
+    let favoriteAction: (FoodItem) -> Void  // Declare favoriteAction here
     
     var body: some View {
         Section(header: Text(title)) {
             ForEach(items, id: \.self) { item in
                 NavigationLink(destination: HistoryItemView(detectedItemName: item.foodName ?? "--", date: Date(), shouldShowDetectedItemSheet: .constant(false), isNewDetection: .constant(false))) {
-                    Text(item.foodName ?? "")
+                    HStack {
+                        Text(item.foodName ?? "")
                         .swipeActions(edge: .trailing) {
                             Button(role: .destructive) {
                                 deleteAction(item)
@@ -70,6 +80,21 @@ struct SectionView: View {
                                 Label("Delete", systemImage: "trash")
                             }
                         }
+                        .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                            Button {
+                                favoriteAction(item)  // Use favoriteAction here
+                            } label: {
+                                Label ("Favorite", systemImage: item.isFavourite ? "heart.fill" : "heart")  // Use isFavourite to conditionally render the heart
+                            }
+                            
+                        }
+                        .tint(Color.orange)
+                        Spacer()
+                        if(item.isFavourite) {
+                            Image(systemName: "heart.fill")
+                                .foregroundColor(Color.orange)
+                        }
+                    }
                 }
             }
         }

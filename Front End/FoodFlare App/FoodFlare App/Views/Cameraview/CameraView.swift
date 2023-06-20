@@ -169,68 +169,66 @@ final class CameraSessionController: NSObject, AVCaptureVideoDataOutputSampleBuf
 }
 
 
+import SwiftUI
+
 struct CameraView: View {
     @StateObject private var controller = CameraSessionController()
-    
 
     var body: some View {
-        NavigationView {
-            ZStack {
-                CameraPreview(session: controller.session)
-                    .onAppear(perform: {
-                        controller.startSession()
-                    })
-                    .onDisappear(perform: {
-                        controller.session.stopRunning()
-                    })
-                    .edgesIgnoringSafeArea(.all) // Make CameraPreview take up the whole screen
-
-                VStack {
-                    Spacer()
-                    HStack {
-                        Button(action: {
-                            controller.processLastFrame()
-                        }) {
-                            Text("Snap")
-                                .font(.system(size: 20, weight: .regular, design: .default))
-                                        .foregroundColor(.white)
-                                .fontWeight(.regular)
-                                .padding(.vertical, 15.0)
-                                .padding(.horizontal, 20.0)
-                                .frame(maxWidth: .infinity)
-                                .background(Color.blue)
-                                .accentColor(.white)
-                                .cornerRadius(17.0)
-                        }
-                    }
-                    .padding()
+        GeometryReader { geometry in
+            CameraPreview(session: controller.session)
+                .onAppear(perform: {
+                    controller.startSession()
+                })
+                .onDisappear(perform: {
+                    controller.session.stopRunning()
+                })
+                .overlay(alignment: .bottom) {
+                    buttonsView()
+                        .frame(height: geometry.size.height * 0.15)
+                        .background(Color.black.opacity(0.75))
                 }
-                .alert(isPresented: $controller.showAlert) {
-                    Alert(title: Text("Warning"),
-                          message: Text("Nothing detected with sufficient confidence."),
-                          dismissButton: .default(Text("OK")))
-                }
-                .sheet(isPresented: $controller.shouldShowDetectedItemSheet) {
-                    if let detectedItem = controller.detectedItem {
-                        let itemImage = controller.lastFrame
-                        let itemCategory = controller.itemCategory
-                        let itemCalories = controller.itemCalories
-                        let itemSugar = controller.itemSugar
-                        let itemDescription = controller.itemDescription
-                        HistoryItemView(detectedItemName: detectedItem, date: Date(), shouldShowDetectedItemSheet: $controller.shouldShowDetectedItemSheet, isNewDetection: .constant(true))
-
-                    }
+                .background(Color.black)
+        }
+        .ignoresSafeArea(edges: .top)
+    }
+    
+    private func buttonsView() -> some View {
+        HStack(spacing: 60) {
+            Spacer()
+            Button {
+                controller.processLastFrame()
+            } label: {
+                ZStack {
+                    Circle()
+                        .strokeBorder(Color.white, lineWidth: 3)
+                        .frame(width: 62, height: 62)
+                    Circle()
+                        .fill(Color.white)
+                        .frame(width: 50, height: 50)
                 }
             }
-            .onReceive(controller.$shouldDismiss, perform: { shouldDismiss in
-                if shouldDismiss {
-                    controller.shouldDismiss = false
-                    controller.shouldNavigate = false // Reset the navigation flag
-                }
-            })
+            Spacer()
         }
-        .navigationTitle("Add Food")
-        .navigationBarTitleDisplayMode(.large)
+        .buttonStyle(.plain)
+        .labelStyle(.iconOnly)
+        .padding()
+        .alert(isPresented: $controller.showAlert) {
+                            Alert(title: Text("Warning"),
+                                  message: Text("Nothing detected with sufficient confidence."),
+                                  dismissButton: .default(Text("OK")))
+                        }
+        .sheet(isPresented: $controller.shouldShowDetectedItemSheet) {
+            if let detectedItem = controller.detectedItem {
+                let itemImage = controller.lastFrame
+                let itemCategory = controller.itemCategory
+                let itemCalories = controller.itemCalories
+                let itemSugar = controller.itemSugar
+                let itemDescription = controller.itemDescription
+                HistoryItemView(detectedItemName: detectedItem, date: Date(), shouldShowDetectedItemSheet: $controller.shouldShowDetectedItemSheet, isNewDetection: .constant(true))
+
+            }
+        }
     }
 }
 

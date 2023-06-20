@@ -13,6 +13,8 @@ struct InformationView: View {
             StatisticView()
             HistoryView()
         }
+        .navigationTitle("Information")
+        .navigationBarTitleDisplayMode(.large)
     }
 }
 
