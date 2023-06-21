@@ -1,292 +1,409 @@
 {
   "foodItems": [
     {
-      "foodName": "apple",
-      "foodCategory": "Fruit",
-      "foodCalories": 52,
+      "foodName": "apricots_bun",
+      "foodCategory": "Bakery",
+      "foodCalories": 250,
       "foodSugar": 10,
-      "foodDescription": "Apples are crunchy and sweet fruits that are rich in antioxidants. They are known for their bright green or red color, depending on the variety. Apples are widely enjoyed as a healthy snack and are also used in various culinary preparations like pies, sauces, and salads.",
-      "foodCategoryColor": "Green"
+      "foodDescription": "A delicious apricot-filled bun with a soft and fluffy texture.",
+      "foodCategoryColor": "Brown",
+      "foodAmountMatters": true
     },
     {
       "foodName": "banana",
-      "foodCategory": "Fruit",
-      "foodCalories": 96,
-      "foodSugar": 17,
-      "foodDescription": "Bananas are tropical fruits with a creamy texture and high potassium content. They are elongated and typically have a vibrant yellow color when ripe. Bananas are a versatile fruit enjoyed on their own, blended into smoothies, sliced over cereal, or used in baking to add natural sweetness and moisture to recipes.",
-      "foodCategoryColor": "Green"
+      "foodCategory": "Fruits",
+      "foodCalories": 105,
+      "foodSugar": 14,
+      "foodDescription": "A sweet and nutritious fruit with a yellow peel.",
+      "foodCategoryColor": "Yellow",
+      "foodAmountMatters": false
     },
     {
-      "foodName": "beetroot",
-      "foodCategory": "Vegetable",
-      "foodCalories": 43,
-      "foodSugar": 9,
-      "foodDescription": "Beetroot is a root vegetable with a deep red color and earthy flavor. It is commonly used in salads, roasted as a side dish, or juiced for its vibrant color and potential health benefits. Beetroot is rich in dietary fiber, vitamins, and minerals, making it a nutritious addition to a balanced diet.",
-      "foodCategoryColor": "Yellow"
-    },
-    {
-      "foodName": "bell pepper",
-      "foodCategory": "Vegetable",
-      "foodCalories": 31,
-      "foodSugar": 5,
-      "foodDescription": "Bell peppers are colorful vegetables with a crisp texture and sweet taste. They come in various colors such as green, red, yellow, and orange, each with a slightly different flavor profile. Bell peppers are commonly used in salads, stir-fries, and stuffed dishes, adding a delightful crunch and vibrant color to meals.",
-      "foodCategoryColor": "Yellow"
-    },
-    {
-      "foodName": "cabbage",
-      "foodCategory": "Vegetable",
-      "foodCalories": 25,
-      "foodSugar": 4,
-      "foodDescription": "Cabbage is a leafy vegetable with a mild and slightly sweet flavor. It comes in different varieties like green, red, and savoy, each with its own unique characteristics. Cabbage is often used in salads, coleslaw, stir-fries, or cooked as a side dish. It is a nutritious vegetable that is low in calories and high in fiber and vitamins.",
-      "foodCategoryColor": "Yellow"
-    },
-    {
-      "foodName": "capsicum",
-      "foodCategory": "Vegetable",
-      "foodCalories": 40,
-      "foodSugar": 6,
-      "foodDescription": "Capsicum, also known as sweet pepper or bell pepper, is a colorful vegetable with a crisp texture and sweet taste. It comes in various colors, including green, red, yellow, and orange, with each color having its own distinct flavor. Capsicum is commonly used in salads, stir-fries, fajitas, and stuffed dishes, providing a burst of color and flavor to meals.",
-      "foodCategoryColor": "Yellow"
-    },
-    {
-      "foodName": "carrot",
-      "foodCategory": "Vegetable",
-      "foodCalories": 41,
-      "foodSugar": 6,
-      "foodDescription": "Carrots are crunchy and sweet root vegetables that are high in beta-carotene, a precursor to vitamin A. They come in different colors, including orange, purple, yellow, and white. Carrots are enjoyed raw as a snack, grated in salads, or cooked in various dishes like soups, stews, and stir-fries. They add a vibrant color and delightful crunch to any meal.",
-      "foodCategoryColor": "Yellow"
-    },
-    {
-      "foodName": "cauliflower",
-      "foodCategory": "Vegetable",
-      "foodCalories": 25,
-      "foodSugar": 5,
-      "foodDescription": "Cauliflower is a versatile vegetable that can be enjoyed raw or cooked. It has a mild and slightly nutty flavor and a crisp yet tender texture. Cauliflower can be used as a low-carb substitute for rice, mashed potatoes, and even pizza crust. It is packed with vitamins, minerals, and fiber, making it a nutritious addition to any meal.",
-      "foodCategoryColor": "Yellow"
-    },
-    {
-      "foodName": "chilli pepper",
-      "foodCategory": "Vegetable",
-      "foodCalories": 40,
-      "foodSugar": 3,
-      "foodDescription": "Chilli peppers are hot and spicy peppers that add heat and flavor to dishes. They come in various shapes, sizes, and levels of spiciness. Chilli peppers are used in cuisines worldwide to enhance the taste of salsas, curries, sauces, and more. They contain a compound called capsaicin, known for its potential health benefits and fiery sensation.",
-      "foodCategoryColor": "Yellow"
-    },
-    {
-      "foodName": "corn",
-      "foodCategory": "Vegetable",
-      "foodCalories": 96,
-      "foodSugar": 6,
-      "foodDescription": "Corn is a sweet and starchy vegetable that is a popular ingredient in many cuisines. It comes in various colors, including yellow, white, and even purple. Corn can be enjoyed on the cob, steamed, grilled, or used in dishes like salads, soups, and salsas. It adds a natural sweetness and a satisfying crunch to a wide range of recipes.",
-      "foodCategoryColor": "Yellow"
-    },
-    {
-      "foodName": "cucumber",
-      "foodCategory": "Vegetable",
-      "foodCalories": 15,
-      "foodSugar": 2,
-      "foodDescription": "Cucumbers are refreshing and hydrating vegetables often used in salads and as a healthy snack. They have a crisp texture and a mild, slightly sweet flavor. Cucumbers can be enjoyed sliced in sandwiches, tossed in salads, or infused in water for a refreshing beverage. They are low in calories and high in water content, making them a great choice for hydration.",
-      "foodCategoryColor": "Yellow"
-    },
-    {
-      "foodName": "eggplant",
-      "foodCategory": "Vegetable",
-      "foodCalories": 25,
-      "foodSugar": 3,
-      "foodDescription": "Eggplant is a purple vegetable with a creamy texture and a mild taste. It is commonly used in Mediterranean and Asian cuisines. Eggplant can be grilled, roasted, or sautéed to create a variety of dishes like baba ganoush, ratatouille, or eggplant parmesan. It adds a unique flavor and a meaty texture to vegetarian and vegan recipes.",
-      "foodCategoryColor": "Yellow"
-    },
-    {
-      "foodName": "garlic",
-      "foodCategory": "Vegetable",
-      "foodCalories": 149,
-      "foodSugar": 1,
-      "foodDescription": "Garlic is a pungent bulb commonly used as a flavoring ingredient in various dishes. It has a strong, distinct flavor and aroma. Garlic is used in cuisines worldwide to add depth and complexity to sauces, marinades, stir-fries, and more. It is also associated with potential health benefits and is a staple in many culinary traditions.",
-      "foodCategoryColor": "Yellow"
-    },
-    {
-      "foodName": "ginger",
-      "foodCategory": "Root",
+      "foodName": "salad_corn",
+      "foodCategory": "Vegetables",
       "foodCalories": 80,
-      "foodSugar": 2,
-      "foodDescription": "Ginger is a spicy and aromatic root commonly used in Asian cuisine and herbal remedies. It has a warm and zesty flavor and can be used fresh, dried, or powdered. Ginger adds a distinctive kick to stir-fries, curries, marinades, and baked goods. It is also known for its potential health benefits, including anti-inflammatory and digestive properties.",
-      "foodCategoryColor": "Yellow"
+      "foodSugar": 3,
+      "foodDescription": "A fresh and crunchy salad made with sweet corn kernels.",
+      "foodCategoryColor": "Green",
+      "foodAmountMatters": true
     },
     {
-      "foodName": "grapes",
-      "foodCategory": "Fruit",
-      "foodCalories": 69,
-      "foodSugar": 16,
-      "foodDescription": "Grapes are small, juicy fruits that come in various colors, such as green, red, and purple. They are often enjoyed as a snack or used in desserts and beverages. Grapes can be eaten fresh, dried into raisins, or pressed into wine. They are naturally sweet and packed with antioxidants, vitamins, and minerals.",
-      "foodCategoryColor": "Green"
+      "foodName": "fries",
+      "foodCategory": "Fast Food",
+      "foodCalories": 365,
+      "foodSugar": 0,
+      "foodDescription": "Deep-fried potato sticks with a crispy exterior and a soft interior.",
+      "foodCategoryColor": "Yellow",
+      "foodAmountMatters": true
     },
     {
-      "foodName": "jalepeno",
-      "foodCategory": "Vegetable",
-      "foodCalories": 29,
-      "foodSugar": 4,
-      "foodDescription": "Jalapeno peppers are medium-sized chili peppers known for their moderate spiciness. They add a kick of heat and flavor to a variety of dishes. Jalapenos are commonly used in salsas, guacamole, chili, and even infused into cocktails. They can be enjoyed fresh, roasted, or pickled, depending on personal preference.",
-      "foodCategoryColor": "Yellow"
+      "foodName": "hanuta",
+      "foodCategory": "Snacks",
+      "foodCalories": 140,
+      "foodSugar": 8,
+      "foodDescription": "A popular chocolate hazelnut wafer snack.",
+      "foodCategoryColor": "Brown",
+      "foodAmountMatters": true
     },
     {
       "foodName": "kiwi",
-      "foodCategory": "Fruit",
-      "foodCalories": 41,
+      "foodCategory": "Fruits",
+      "foodCalories": 61,
       "foodSugar": 9,
-      "foodDescription": "Kiwi is a small fruit with a fuzzy brown exterior and vibrant green flesh. It is known for its high vitamin C content and refreshing flavor. Kiwis are often enjoyed as a healthy snack, sliced in salads, blended into smoothies, or used as a garnish. They add a pop of color and a tangy sweetness to any dish.",
-      "foodCategoryColor": "Green"
+      "foodDescription": "A tangy and juicy fruit with a brown, fuzzy skin and vibrant green flesh.",
+      "foodCategoryColor": "Green",
+      "foodAmountMatters": false
+    },
+    {
+      "foodName": "lime",
+      "foodCategory": "Fruits",
+      "foodCalories": 30,
+      "foodSugar": 1,
+      "foodDescription": "A small and sour citrus fruit with a green rind.",
+      "foodCategoryColor": "Green",
+      "foodAmountMatters": false
+    },
+    {
+      "foodName": "melon_honey",
+      "foodCategory": "Fruits",
+      "foodCalories": 64,
+      "foodSugar": 16,
+      "foodDescription": "A sweet and juicy melon with a golden rind and orange flesh.",
+      "foodCategoryColor": "Orange",
+      "foodAmountMatters": true
+    },
+    {
+      "foodName": "muffin_chocolate",
+      "foodCategory": "Bakery",
+      "foodCalories": 380,
+      "foodSugar": 30,
+      "foodDescription": "A moist and chocolatey muffin with a soft texture.",
+      "foodCategoryColor": "Brown",
+      "foodAmountMatters": true
+    },
+    {
+      "foodName": "pretzel_breadstick",
+      "foodCategory": "Bakery",
+      "foodCalories": 120,
+      "foodSugar": 1,
+      "foodDescription": "A twisted and salty breadstick with a crunchy crust.",
+      "foodCategoryColor": "Brown",
+      "foodAmountMatters": true
+    },
+    {
+      "foodName": "pretzels",
+      "foodCategory": "Snacks",
+      "foodCalories": 110,
+      "foodSugar": 1,
+      "foodDescription": "Baked bread snacks with a knot shape and a crispy texture.",
+      "foodCategoryColor": "Brown",
+      "foodAmountMatters": true
+    },
+    {
+      "foodName": "protein_muesli",
+      "foodCategory": "Breakfast",
+      "foodCalories": 300,
+      "foodSugar": 10,
+      "foodDescription": "A nutritious and protein-rich muesli mix with various grains, nuts, and dried fruits.",
+      "foodCategoryColor": "Brown",
+      "foodAmountMatters": true
+    },
+    {
+      "foodName": "schnitzel_breadroll",
+      "foodCategory": "Bakery",
+      "foodCalories": 400,
+      "foodSugar": 2,
+      "foodDescription": "A bread roll filled with a breaded and fried meat cutlet.",
+      "foodCategoryColor": "Brown",
+      "foodAmountMatters": true
+    },
+    {
+      "foodName": "tomato_mozarella_breadroll",
+      "foodCategory": "Bakery",
+      "foodCalories": 280,
+      "foodSugar": 4,
+      "foodDescription": "A bread roll filled with fresh tomato slices, mozzarella cheese, and herbs.",
+      "foodCategoryColor": "Brown",
+      "foodAmountMatters": true
+    },
+    {
+      "foodName": "apple",
+      "foodCategory": "Fruits",
+      "foodCalories": 52,
+      "foodSugar": 10,
+      "foodDescription": "A crisp and juicy fruit with a range of colors, including red, green, and yellow.",
+      "foodCategoryColor": "Red",
+      "foodAmountMatters": false
+    },
+    {
+      "foodName": "apple_puree",
+      "foodCategory": "Fruits",
+      "foodCalories": 71,
+      "foodSugar": 14,
+      "foodDescription": "A smooth and mashed apple-based puree.",
+      "foodCategoryColor": "Red",
+      "foodAmountMatters": true
+    },
+    {
+      "foodName": "apricot",
+      "foodCategory": "Fruits",
+      "foodCalories": 48,
+      "foodSugar": 3,
+      "foodDescription": "A small and sweet fruit with a velvety skin and a vibrant orange color.",
+      "foodCategoryColor": "Orange",
+      "foodAmountMatters": false
+    },
+    {
+      "foodName": "avocado",
+      "foodCategory": "Fruits",
+      "foodCalories": 160,
+      "foodSugar": 0.7,
+      "foodDescription": "A creamy and nutritious fruit with a green skin and a buttery texture.",
+      "foodCategoryColor": "Green",
+      "foodAmountMatters": false
+    },
+    {
+      "foodName": "bread",
+      "foodCategory": "Bakery",
+      "foodCalories": 79,
+      "foodSugar": 1,
+      "foodDescription": "A staple food made from flour, water, and yeast, often used for sandwiches or toast.",
+      "foodCategoryColor": "Brown",
+      "foodAmountMatters": true
+    },
+    {
+      "foodName": "bread_and_nutella",
+      "foodCategory": "Bakery",
+      "foodCalories": 400,
+      "foodSugar": 30,
+      "foodDescription": "Bread slices spread with delicious Nutella hazelnut chocolate spread.",
+      "foodCategoryColor": "Brown",
+      "foodAmountMatters": true
+    },
+    {
+      "foodName": "bread_and_butter",
+      "foodCategory": "Bakery",
+      "foodCalories": 150,
+      "foodSugar": 0.5,
+      "foodDescription": "Slices of bread topped with creamy butter.",
+      "foodCategoryColor": "Yellow",
+      "foodAmountMatters": true
+    },
+    {
+      "foodName": "bread_and_meatsalad",
+      "foodCategory": "Bakery",
+      "foodCalories": 350,
+      "foodSugar": 1,
+      "foodDescription": "Bread slices spread with butter and filled with a meat salad mixture.",
+      "foodCategoryColor": "Yellow",
+      "foodAmountMatters": true
+    },
+    {
+      "foodName": "crispbread",
+      "foodCategory": "Bakery",
+      "foodCalories": 55,
+      "foodSugar": 1,
+      "foodDescription": "A dry and crunchy type of bread often eaten as a snack or with toppings.",
+      "foodCategoryColor": "Brown",
+      "foodAmountMatters": true
+    },
+    {
+      "foodName": "ginger",
+      "foodCategory": "Spices",
+      "foodCalories": 80,
+      "foodSugar": 2,
+      "foodDescription": "A pungent and aromatic spice known for its medicinal properties.",
+      "foodCategoryColor": "Yellow",
+      "foodAmountMatters": false
+    },
+    {
+      "foodName": "honey",
+      "foodCategory": "Sweeteners",
+      "foodCalories": 64,
+      "foodSugar": 17,
+      "foodDescription": "A natural sweetener produced by bees from floral nectar.",
+      "foodCategoryColor": "Yellow",
+      "foodAmountMatters": false
+    },
+    {
+      "foodName": "indian_curry_with_rice_and_chicken",
+      "foodCategory": "Meals",
+      "foodCalories": 450,
+      "foodSugar": 3,
+      "foodDescription": "A flavorful and aromatic Indian curry dish served with rice and chicken.",
+      "foodCategoryColor": "Orange",
+      "foodAmountMatters": true
+    },
+    {
+      "foodName": "landjaeger",
+      "foodCategory": "Meat",
+      "foodCalories": 260,
+      "foodSugar": 1,
+      "foodDescription": "A dried and seasoned sausage with a smoky flavor.",
+      "foodCategoryColor": "Red",
+      "foodAmountMatters": true
     },
     {
       "foodName": "lemon",
-      "foodCategory": "Citrus",
-      "foodCalories": 29,
-      "foodSugar": 2,
-      "foodDescription": "Lemons are sour citrus fruits commonly used for their juice and zest in cooking and beverages. They have a bright yellow color and a tangy flavor. Lemons are versatile ingredients that add acidity and freshness to dishes like marinades, dressings, sauces, and desserts. They are also rich in vitamin C and are known for their cleansing properties.",
-      "foodCategoryColor": "Yellow"
+      "foodCategory": "Fruits",
+      "foodCalories": 17,
+      "foodSugar": 2.5,
+      "foodDescription": "A citrus fruit with a tart flavor and a yellow rind.",
+      "foodCategoryColor": "Yellow",
+      "foodAmountMatters": false
     },
     {
-      "foodName": "lettuce",
-      "foodCategory": "Vegetable",
-      "foodCalories": 5,
+      "foodName": "muesli",
+      "foodCategory": "Breakfast",
+      "foodCalories": 340,
+      "foodSugar": 10,
+      "foodDescription": "A mix of rolled oats, dried fruits, nuts, and seeds often eaten with milk or yogurt.",
+      "foodCategoryColor": "Brown",
+      "foodAmountMatters": true
+    },
+    {
+      "foodName": "oatmeal",
+      "foodCategory": "Breakfast",
+      "foodCalories": 150,
       "foodSugar": 1,
-      "foodDescription": "Lettuce is a leafy green vegetable often used as a base for salads and sandwiches. It comes in different varieties like romaine, iceberg, and butterhead, each with its own texture and flavor. Lettuce is low in calories and high in water content, making it a refreshing and hydrating choice. It provides a crisp and crunchy element to dishes.",
-      "foodCategoryColor": "Yellow"
+      "foodDescription": "A hot cereal made from ground oats, often served with milk, fruits, or sweeteners.",
+      "foodCategoryColor": "Brown",
+      "foodAmountMatters": true
     },
     {
-      "foodName": "mango",
-      "foodCategory": "Fruit",
-      "foodCalories": 60,
-      "foodSugar": 14,
-      "foodDescription": "Mango is a tropical fruit with a sweet and juicy flesh. It is commonly enjoyed fresh or blended into smoothies and desserts. Mangoes come in different varieties and have a vibrant orange color when ripe. They are rich in vitamins, minerals, and antioxidants. Mangoes add a tropical flair and a burst of natural sweetness to a wide range of dishes.",
-      "foodCategoryColor": "Green"
-    },
-    {
-      "foodName": "onion",
-      "foodCategory": "Vegetable",
+      "foodName": "Onion White",
+      "foodCategory": "Vegetables",
       "foodCalories": 40,
-      "foodSugar": 9,
-      "foodDescription": "Onions are pungent and flavorful bulb vegetables commonly used as a base ingredient in many recipes. They come in different types, including yellow, red, and white, each with its own taste and intensity. Onions are often sautéed, caramelized, or used raw in salads, soups, stews, and stir-fries. They add depth and aroma to a variety of dishes.",
-      "foodCategoryColor": "Yellow"
+      "foodSugar": 4,
+      "foodDescription": "A pungent and flavorful vegetable with white flesh and layers.",
+      "foodCategoryColor": "White",
+      "foodAmountMatters": false
     },
     {
       "foodName": "orange",
-      "foodCategory": "Citrus",
-      "foodCalories": 43,
-      "foodSugar": 9,
-      "foodDescription": "Oranges are citrus fruits known for their bright orange color and refreshing, tangy flavor. They are a rich source of vitamin C and provide a burst of citrusy goodness. Oranges can be enjoyed fresh, juiced, or used in various culinary creations like salads, desserts, and marinades. They add brightness and a zesty twist to both sweet and savory dishes.",
-      "foodCategoryColor": "Yellow"
+      "foodCategory": "Fruits",
+      "foodCalories": 62,
+      "foodSugar": 12,
+      "foodDescription": "A sweet and citrus fruit with a bright orange color and juicy segments.",
+      "foodCategoryColor": "Orange",
+      "foodAmountMatters": false
     },
     {
-      "foodName": "paprika",
-      "foodCategory": "Spice",
-      "foodCalories": 20,
+      "foodName": "pesto_red",
+      "foodCategory": "Sauces",
+      "foodCalories": 250,
       "foodSugar": 2,
-      "foodDescription": "Paprika is a powdered spice made from dried peppers. It adds a subtle and smoky flavor, as well as a vibrant red color, to dishes. Paprika is commonly used in various cuisines to season meats, vegetables, stews, and sauces. It ranges in spiciness, from mild to hot, and can be used as a seasoning or as a garnish.",
-      "foodCategoryColor": "Yellow"
+      "foodDescription": "A flavorful sauce made with basil, garlic, Parmesan cheese, pine nuts, and olive oil.",
+      "foodCategoryColor": "Green",
+      "foodAmountMatters": false
     },
     {
-      "foodName": "pear",
-      "foodCategory": "Fruit",
-      "foodCalories": 57,
-      "foodSugar": 10,
-      "foodDescription": "Pears are sweet and juicy fruits with a distinctive shape and smooth texture. They come in different varieties, including Anjou, Bartlett, and Bosc, each with its own flavor profile. Pears can be enjoyed fresh, poached, or baked in desserts. They add a touch of elegance and natural sweetness to both sweet and savory dishes.",
-      "foodCategoryColor": "Green"
+      "foodName": "pesto_red_and_tortelini",
+      "foodCategory": "Pasta",
+      "foodCalories": 320,
+      "foodSugar": 3,
+      "foodDescription": "Tortellini pasta served with a delicious red pesto sauce.",
+      "foodCategoryColor": "Red",
+      "foodAmountMatters": true
     },
     {
-      "foodName": "peas",
-      "foodCategory": "Vegetable",
-      "foodCalories": 81,
-      "foodSugar": 5,
-      "foodDescription": "Peas are small, round green vegetables often used as a side dish or ingredient in soups and stews. They have a slightly sweet and earthy flavor. Peas can be enjoyed fresh, frozen, or canned, depending on availability. They are a good source of fiber and protein and add a pop of vibrant green color to a variety of recipes.",
-      "foodCategoryColor": "Yellow"
-    },
-    {
-      "foodName": "pineapple",
-      "foodCategory": "Fruit",
-      "foodCalories": 50,
-      "foodSugar": 9,
-      "foodDescription": "Pineapple is a tropical fruit with a sweet and tangy taste. It has a spiky exterior and a juicy, golden-yellow flesh. Pineapples are a good source of vitamin C and contain an enzyme called bromelain, which has potential health benefits. Pineapple adds a tropical flair and a burst of flavor to both sweet and savory recipes.",
-      "foodCategoryColor": "Green"
-    },
-    {
-      "foodName": "pomegranate",
-      "foodCategory": "Fruit",
-      "foodCalories": 83,
-      "foodSugar": 13,
-      "foodDescription": "Pomegranate is a fruit with a leathery exterior and juicy seeds, known for its rich antioxidants and vibrant red color. It has a sweet and tart flavor profile, making it a refreshing addition to salads, desserts, and beverages. Pomegranates are also enjoyed as a snack or used in sauces and marinades. They are packed with vitamins, minerals, and beneficial plant compounds.",
-      "foodCategoryColor": "Green"
-    },
-    {
-      "foodName": "potato",
-      "foodCategory": "Vegetable",
-      "foodCalories": 130,
+      "foodName": "pizza_prosciutto",
+      "foodCategory": "Fast Food",
+      "foodCalories": 285,
       "foodSugar": 2,
-      "foodDescription": "Potatoes are starchy root vegetables that are a staple in many cuisines. They come in different varieties, such as russet, red, and sweet potatoes, each with its own texture and flavor. Potatoes can be boiled, roasted, mashed, or fried, and they are used in a wide range of dishes, from comforting mashed potatoes to crispy fries. They are a good source of carbohydrates and provide energy.",
-      "foodCategoryColor": "Yellow"
+      "foodDescription": "A classic pizza topped with prosciutto, mozzarella cheese, and tomato sauce.",
+      "foodCategoryColor": "Red",
+      "foodAmountMatters": true
     },
     {
-      "foodName": "radish",
-      "foodCategory": "Vegetable",
-      "foodCalories": 16,
+      "foodName": "potato_noodles",
+      "foodCategory": "Pasta",
+      "foodCalories": 320,
       "foodSugar": 2,
-      "foodDescription": "Radish is a small root vegetable with a peppery flavor. It is often used in salads and pickled dishes for its refreshing and crunchy texture. Radishes come in various colors, including red, white, and black. They are low in calories and rich in vitamin C. Radishes add a burst of flavor and a vibrant touch to salads, slaws, and appetizer platters.",
-      "foodCategoryColor": "Yellow"
+      "foodDescription": "Noodles made from potato dough, often used in various dishes.",
+      "foodCategoryColor": "Yellow",
+      "foodAmountMatters": true
     },
     {
-      "foodName": "soy beans",
-      "foodCategory": "Legume",
-      "foodCalories": 173,
-      "foodSugar": 7,
-      "foodDescription": "Soybeans, also known as edamame, are edible beans with a high protein content. They are commonly used in various cuisines and are a popular source of plant-based protein. Soybeans can be steamed, boiled, or roasted, and they are enjoyed as a snack or used in stir-fries, salads, and soups. They add a nutritious and satisfying element to vegetarian and vegan dishes.",
-      "foodCategoryColor": "Yellow"
-    },
-    {
-      "foodName": "spinach",
-      "foodCategory": "Vegetable",
-      "foodCalories": 23,
+      "foodName": "sausage",
+      "foodCategory": "Meat",
+      "foodCalories": 150,
       "foodSugar": 1,
-      "foodDescription": "Spinach is a nutrient-dense leafy green vegetable that is often cooked or enjoyed raw in salads. It has a mild and slightly earthy flavor. Spinach is rich in vitamins A, C, and K, as well as iron and other essential nutrients. It can be sautéed, steamed, or used as a base for salads and smoothies, adding a boost of green goodness to meals.",
-      "foodCategoryColor": "Yellow"
+      "foodDescription": "A seasoned and cured meat product with a savory flavor.",
+      "foodCategoryColor": "Red",
+      "foodAmountMatters": true
     },
     {
-      "foodName": "sweetcorn",
-      "foodCategory": "Vegetable",
-      "foodCalories": 86,
-      "foodSugar": 8,
-      "foodDescription": "Sweetcorn is a variety of corn with high sugar content, commonly used in salads, soups, and side dishes. It has a sweet and crisp texture. Sweetcorn can be enjoyed boiled, grilled, or added to casseroles and salsas. It provides a burst of flavor and a pop of bright yellow color to various recipes.",
-      "foodCategoryColor": "Yellow"
+      "foodName": "skyr",
+      "foodCategory": "Dairy",
+      "foodCalories": 80,
+      "foodSugar": 4,
+      "foodDescription": "A creamy and thick Icelandic yogurt with a high protein content.",
+      "foodCategoryColor": "White",
+      "foodAmountMatters": true
     },
     {
-      "foodName": "sweet potato",
-      "foodCategory": "Vegetable",
-      "foodCalories": 86,
+      "foodName": "soya_milk",
+      "foodCategory": "Beverages",
+      "foodCalories": 90,
       "foodSugar": 7,
-      "foodDescription": "Sweet potatoes are starchy and sweet root vegetables that are often baked, roasted, or used in desserts. They have an orange or purple flesh and a naturally sweet flavor. Sweet potatoes are a good source of fiber, vitamins, and antioxidants. They can be enjoyed as fries, mashed, or added to casseroles, pies, and even smoothies.",
-      "foodCategoryColor": "Yellow"
+      "foodDescription": "A plant-based milk alternative made from soybeans.",
+      "foodCategoryColor": "White",
+      "foodAmountMatters": true
+    },
+    {
+      "foodName": "steak_cow",
+      "foodCategory": "Meat",
+      "foodCalories": 250,
+      "foodSugar": 0,
+      "foodDescription": "A tender and juicy cut of beef steak.",
+      "foodCategoryColor": "Red",
+      "foodAmountMatters": true
+    },
+    {
+      "foodName": "steak_pork",
+      "foodCategory": "Meat",
+      "foodCalories": 220,
+      "foodSugar": 0,
+      "foodDescription": "A flavorful and succulent cut of pork steak.",
+      "foodCategoryColor": "Red",
+      "foodAmountMatters": true
+    },
+    {
+      "foodName": "sushi",
+      "foodCategory": "Seafood",
+      "foodCalories": 300,
+      "foodSugar": 10,
+      "foodDescription": "A Japanese dish consisting of vinegared rice topped with various ingredients, such as fish, seafood, or vegetables.",
+      "foodCategoryColor": "White",
+      "foodAmountMatters": true
     },
     {
       "foodName": "tomato",
-      "foodCategory": "Fruit",
+      "foodCategory": "Vegetables",
       "foodCalories": 18,
-      "foodSugar": 3,
-      "foodDescription": "Tomatoes are juicy and flavorful fruits that are commonly used in various dishes, including salads, sauces, and soups. They come in different shapes, sizes, and colors, such as red, yellow, and even green. Tomatoes can be enjoyed fresh, roasted, or sun-dried. They add a burst of acidity, a vibrant color, and a hint of sweetness to many recipes.",
-      "foodCategoryColor": "Yellow"
+      "foodSugar": 2.6,
+      "foodDescription": "A juicy and versatile fruit commonly used in salads, sauces, and other dishes.",
+      "foodCategoryColor": "Red",
+      "foodAmountMatters": false
     },
     {
-      "foodName": "turnip",
-      "foodCategory": "Vegetable",
-      "foodCalories": 28,
-      "foodSugar": 6,
-      "foodDescription": "Turnip is a root vegetable with a slightly peppery taste. It is often used in stews, roasts, and mashed dishes. Turnips have a crisp texture when raw and a tender and slightly sweet flavor when cooked. They are low in calories and a good source of fiber and vitamin C. Turnips add a unique flavor and a touch of earthiness to a variety of recipes.",
-      "foodCategoryColor": "Yellow"
+      "foodName": "tortelini",
+      "foodCategory": "Pasta",
+      "foodCalories": 250,
+      "foodSugar": 2,
+      "foodDescription": "Small stuffed pasta typically filled with cheese, meat, or vegetable mixtures.",
+      "foodCategoryColor": "Yellow",
+      "foodAmountMatters": true
     },
     {
-      "foodName": "watermelon",
-      "foodCategory": "Fruit",
+      "foodName": "water_melon",
+      "foodCategory": "Fruits",
       "foodCalories": 30,
       "foodSugar": 6,
-      "foodDescription": "Watermelon is a refreshing and hydrating fruit with a sweet and juicy flesh, perfect for hot summer days. It has a crisp texture and a vibrant red or pink color. Watermelon can be enjoyed sliced, cubed, or blended into refreshing beverages. It is low in calories and high in water content, making it a guilt-free and hydrating treat.",
-      "foodCategoryColor": "Green"
+      "foodDescription": "A refreshing and hydrating fruit with a green rind and juicy red or pink flesh.",
+      "foodCategoryColor": "Green",
+      "foodAmountMatters": false
     }
   ]
 }

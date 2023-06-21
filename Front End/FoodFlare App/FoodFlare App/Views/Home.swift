@@ -40,8 +40,7 @@ struct Home: View {
             StatisticView()
             HistoryView()
         }
-        .navigationTitle("Food Flare")
-        .navigationBarTitleDisplayMode(.large)
+        .navigationBarTitle(titleAnimator.title, displayMode: .large)
     }
 }
 

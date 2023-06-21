@@ -21,6 +21,8 @@ struct HistoryItemView: View {
     let confirmationGenerator = UINotificationFeedbackGenerator()
     
     @Binding var isNewDetection: Bool
+    @State private var foodAmount: Int16 = 100
+
     
     func imageExists(_ imageName: String) -> Bool {
             return UIImage(named: imageName) != nil
@@ -29,7 +31,7 @@ struct HistoryItemView: View {
     var body: some View {
         let detectedItem = foodItems.first(where: { $0.foodName == detectedItemName })
         let formattedDetectedItemName = detectedItemName.replacingOccurrences(of: "_", with: " ").capitalized
-        
+
         let calories = detectedItem?.foodCalories ?? 0
         
         let walkingDistance = (Double(calories) / 300) * 5
@@ -113,39 +115,87 @@ struct HistoryItemView: View {
                 
                 Divider()
                 VStack(alignment: .leading) {
-                    Button(action: {
-                        let newStatistics = Statistics(context: viewContext)
-                        newStatistics.date = Date()
-                        
-                        if let detectedItem = foodItems.first(where: { $0.foodName == detectedItemName }) {
-                            newStatistics.foodName = detectedItem.foodName
-                            newStatistics.foodCategory = detectedItem.foodCategory
-                            newStatistics.foodCalories = detectedItem.foodCalories
-                            newStatistics.foodSugar = detectedItem.foodSugar
-                            newStatistics.foodCategoryColor = detectedItem.foodCategoryColor
+                    if(detectedItem?.foodAmountMatters ?? false == true) {
+                        Stepper(value: $foodAmount, in: 25...2000, step: 25) {
+                            Text("Food Amount: \(foodAmount)g")
+                        }
+                        .onChange(of: foodAmount) { _ in
+                            let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                            impactMed.impactOccurred()
                         }
                         
-                        do {
-                            try viewContext.save()
-                            confirmationGenerator.notificationOccurred(.success)
-                            print("Saved new statistics item: \(newStatistics)")
+                        Button(action: {
+                            let newStatistics = Statistics(context: viewContext)
+                            newStatistics.date = Date()
                             
+                            if let detectedItem = foodItems.first(where: { $0.foodName == detectedItemName }) {
+                                newStatistics.foodName = detectedItem.foodName
+                                newStatistics.foodCategory = detectedItem.foodCategory
+                                newStatistics.foodCalories = Int16((Double(detectedItem.foodCalories) / 100.0) * Double(foodAmount))
+                                newStatistics.foodSugar = Int16((Double(detectedItem.foodSugar) / 100.0) * Double(foodAmount))
+                                newStatistics.foodCategoryColor = detectedItem.foodCategoryColor
+                            }
                             
-                        } catch {
-                            let nsError = error as NSError
-                            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                            do {
+                                try viewContext.save()
+                                confirmationGenerator.notificationOccurred(.success)
+                                print("Saved new statistics item: \(newStatistics)")
+                                print("foodamount was \(Int16(foodAmount))")
+                                print("calotries were \(newStatistics.foodCalories)")
+                                
+                                
+                            } catch {
+                                let nsError = error as NSError
+                                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                            }
+                        }) {
+                            Text("Let's Eat")
+                                .font(.system(size: 20, weight: .regular, design: .default))
+                                .foregroundColor(.white)
+                                .fontWeight(.regular)
+                                .padding(.vertical, 15.0)
+                                .padding(.horizontal, 20.0)
+                                .frame(maxWidth: .infinity)
+                                .background(Color.blue)
+                                .accentColor(.white)
+                                .cornerRadius(17.0)
                         }
-                    }) {
-                        Text("Let's Eat")
-                            .font(.system(size: 20, weight: .regular, design: .default))
-                            .foregroundColor(.white)
-                            .fontWeight(.regular)
-                            .padding(.vertical, 15.0)
-                            .padding(.horizontal, 20.0)
-                            .frame(maxWidth: .infinity)
-                            .background(Color.blue)
-                            .accentColor(.white)
-                            .cornerRadius(17.0)
+                        .padding(.top)
+                    } else {
+                        Button(action: {
+                            let newStatistics = Statistics(context: viewContext)
+                            newStatistics.date = Date()
+                            
+                            if let detectedItem = foodItems.first(where: { $0.foodName == detectedItemName }) {
+                                newStatistics.foodName = detectedItem.foodName
+                                newStatistics.foodCategory = detectedItem.foodCategory
+                                newStatistics.foodCalories = detectedItem.foodCalories
+                                newStatistics.foodSugar = detectedItem.foodSugar
+                                newStatistics.foodCategoryColor = detectedItem.foodCategoryColor
+                            }
+                            
+                            do {
+                                try viewContext.save()
+                                confirmationGenerator.notificationOccurred(.success)
+                                print("Saved new statistics item: \(newStatistics)")
+                                
+                                
+                            } catch {
+                                let nsError = error as NSError
+                                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                            }
+                        }) {
+                            Text("Let's Eat")
+                                .font(.system(size: 20, weight: .regular, design: .default))
+                                .foregroundColor(.white)
+                                .fontWeight(.regular)
+                                .padding(.vertical, 15.0)
+                                .padding(.horizontal, 20.0)
+                                .frame(maxWidth: .infinity)
+                                .background(Color.blue)
+                                .accentColor(.white)
+                                .cornerRadius(17.0)
+                        }
                     }
                     Button(action: {
                         // Toggle favorite status and save context

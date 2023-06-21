@@ -79,6 +79,7 @@ struct DeveloperView: View {
                 foodItem.foodSugar = foodItemDict["foodSugar"] as? Int16 ?? 0
                 foodItem.foodDescription = foodItemDict["foodDescription"] as? String
                 foodItem.foodCategoryColor = foodItemDict["foodCategoryColor"] as? String
+                foodItem.foodAmountMatters = foodItemDict["foodAmountMatters"] as? Bool ?? false
 
                 print("Food Item: \(foodItem.foodName ?? ""), Category: \(foodItem.foodCategory ?? ""), Calories: \(foodItem.foodCalories), Sugar: \(foodItem.foodSugar) Color: \(foodItem.foodCategoryColor)")
             }
