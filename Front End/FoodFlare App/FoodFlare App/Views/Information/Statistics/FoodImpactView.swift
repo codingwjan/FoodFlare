@@ -28,9 +28,6 @@ struct FoodImpactView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Food Impact")
-                .font(.title3)
-                .fontWeight(.bold)
             VStack(alignment: .leading) {
                 Text("Food with the highest impact")
                 if let food = highestImpactFood {
@@ -45,8 +42,7 @@ struct FoodImpactView: View {
                 createChartHorizontal(items: statisticItems, keyPath: \.foodName, xLabel: "Calories", yLabel: "Name")
             }
             .padding()
-            .background(.quaternary)
-            .cornerRadius(20)
+            .overlay(RoundedRectangle(cornerRadius: 17.0).stroke(.tertiary, lineWidth: 1))
         }
         .frame(height: 600)
         .padding(.top)

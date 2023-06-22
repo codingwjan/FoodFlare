@@ -100,15 +100,6 @@
       "foodAmountMatters": true
     },
     {
-      "foodName": "protein_muesli",
-      "foodCategory": "Breakfast",
-      "foodCalories": 300,
-      "foodSugar": 10,
-      "foodDescription": "A nutritious and protein-rich muesli mix with various grains, nuts, and dried fruits.",
-      "foodCategoryColor": "Brown",
-      "foodAmountMatters": true
-    },
-    {
       "foodName": "schnitzel_breadroll",
       "foodCategory": "Bakery",
       "foodCalories": 400,
@@ -404,6 +395,33 @@
       "foodDescription": "A refreshing and hydrating fruit with a green rind and juicy red or pink flesh.",
       "foodCategoryColor": "Green",
       "foodAmountMatters": false
-    }
+    },
+    {
+          "foodName": "greek_salad",
+          "foodCategory": "Salads",
+          "foodCalories": 150,
+          "foodSugar": 4,
+          "foodDescription": "A refreshing salad made with fresh vegetables, feta cheese, olives, and a tangy dressing.",
+          "foodCategoryColor": "Green",
+          "foodAmountMatters": true
+        },
+        {
+          "foodName": "meat_ball",
+          "foodCategory": "Meat",
+          "foodCalories": 200,
+          "foodSugar": 1,
+          "foodDescription": "A savory ball made from ground meat, breadcrumbs, and various seasonings, often served with sauce or as part of a dish.",
+          "foodCategoryColor": "Red",
+          "foodAmountMatters": true
+        },
+        {
+          "foodName": "schnitzel",
+          "foodCategory": "Meat",
+          "foodCalories": 350,
+          "foodSugar": 1,
+          "foodDescription": "A breaded and fried meat cutlet, typically made from veal, pork, or chicken.",
+          "foodCategoryColor": "Brown",
+          "foodAmountMatters": true
+        }
   ]
 }

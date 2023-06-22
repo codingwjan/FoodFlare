@@ -16,9 +16,6 @@ struct WeeklyWaterView: View {
     private var waterStatisticItems: FetchedResults<WaterStatistics>
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Weekly Water")
-                .font(.title3)
-                .fontWeight(.bold)
             VStack(alignment: .leading) {
                 Text("Total Water in the past 7 Days")
                 Text("\(String(format: "%.2f", totalWater)) liters")
@@ -27,8 +24,7 @@ struct WeeklyWaterView: View {
                 createChartVertical(items: waterStatisticItems, keyPath: \.waterAmount, xLabel: "Day", yLabel: "Water")
             }
             .padding()
-            .background(.quaternary)
-            .cornerRadius(20)
+            .overlay(RoundedRectangle(cornerRadius: 17.0).stroke(.tertiary, lineWidth: 1))
         }
         .padding(.top)
 

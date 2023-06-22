@@ -16,9 +16,6 @@ struct WeeklyCaloriesView: View {
     private var statisticItems: FetchedResults<Statistics>
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Weekly Calories")
-                .font(.title3)
-                .fontWeight(.bold)
             VStack(alignment: .leading) {
                 Text("Total Energy in the past 7 Days")
                 Text("\(totalCalories) Calories")
@@ -27,8 +24,7 @@ struct WeeklyCaloriesView: View {
                 createChartVertical(items: statisticItems, keyPath: \.foodCalories, xLabel: "Day", yLabel: "Calories")
             }
             .padding()
-            .background(.quaternary)
-            .cornerRadius(20)
+            .overlay(RoundedRectangle(cornerRadius: 17.0).stroke(.tertiary, lineWidth: 1))
         }
         .padding(.top)
     }

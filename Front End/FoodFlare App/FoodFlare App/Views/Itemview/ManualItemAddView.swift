@@ -64,6 +64,11 @@ struct ManualItemAddView: View {
         .searchable(text: $searchText)  // SwiftUI's built-in search bar
         .navigationTitle("Food")
         .navigationBarTitleDisplayMode(.large)
+        .toolbar{
+            NavigationLink(destination: AddCustomItem(foodName: "", foodCategory: "", foodCalories: 10, foodSugar: 10)) {
+                Image(systemName: "plus")
+            }
+        }
     }
 }
 
@@ -129,7 +134,6 @@ struct SectionView: View {
                     }
                 }
             }
-            
         }
     }
 }

@@ -16,9 +16,6 @@ struct WeeklySugarView: View {
     private var statisticItems: FetchedResults<Statistics>
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Weekly Sugar")
-                .font(.title3)
-                .fontWeight(.bold)
             VStack(alignment: .leading) {
                 Text("Total Sugar in the past 7 Days")
                 Text("\(totalSugar) g")
@@ -27,8 +24,7 @@ struct WeeklySugarView: View {
                 createChartVertical(items: statisticItems, keyPath: \.foodSugar, xLabel: "Day", yLabel: "Sugar")
             }
             .padding()
-            .background(.quaternary)
-            .cornerRadius(20)
+            .overlay(RoundedRectangle(cornerRadius: 17.0).stroke(.tertiary, lineWidth: 1))
         }
         .padding(.top)
 

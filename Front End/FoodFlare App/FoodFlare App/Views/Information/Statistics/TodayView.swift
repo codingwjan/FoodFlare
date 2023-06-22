@@ -16,56 +16,75 @@ struct TodayView: View {
     
     
     var body: some View {
-        
         VStack(alignment: .leading) {
-            Text("Today")
-                .font(.title3)
+            Text("\(Date(), formatter: DateFormatter.day)")
+                .font(.title)
                 .fontWeight(.bold)
-            VStack {
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("Calories Eaten")
-                        Text("\(todayCalories) cal")
-                            .font(.title)
-                            .fontWeight(.bold)
-                    }
-                    Spacer()
-                    VStack(alignment: .leading) {
-                        Text("Water Drunk")
-                        Text("\(String(format: "%.2f", todayWater)) l")
-                            .font(.title)
-                            .fontWeight(.bold)
-                    }
-                    Spacer()
-                    
-                }
+                
+            HStack {
+                Text("Calories")
+                    .frame(width: 70, alignment: .leading)
                 Spacer()
-                HStack {
-                    if HKHealthStore.isHealthDataAvailable() {
-                        VStack(alignment: .leading) {
-                            Text("Calories Burned")
-                            Text("\(todayBurned) cal")
-                                .font(.title)
-                                .fontWeight(.bold)
-                        }
-                        Spacer()
+                HStack(alignment: .center, spacing: 20) {
+                    VStack(alignment: .leading) {
+                        Text("Eaten")
+                            .foregroundColor(.secondary)
+                            .frame(width: 80, alignment: .leading)
+                        Text("\(todayCalories)")
+                            .font(.title)
+                            .fontWeight(.semibold)
                     }
                     VStack(alignment: .leading) {
-                        Text("Sugar Eaten")
-                        Text("\(todaySugar) g")
+                        Text("Burned")
+                            .foregroundColor(.secondary)
+                            .frame(width: 80, alignment: .leading)
+                        Text("\(todayBurned)")
                             .font(.title)
-                            .fontWeight(.bold)
+                            .fontWeight(.semibold)
                     }
-                    Spacer()
                 }
             }
-            .padding()
-            .background(.quaternary)
-            .cornerRadius(20)
+            .padding(.top)
+
+            HStack {
+                Text("Water")
+                    .frame(width: 70, alignment: .leading)
+                Spacer()
+                HStack(alignment: .center, spacing: 20) {
+                    VStack(alignment: .leading) {
+                        Text("Drunken")
+                            .foregroundColor(.secondary)
+                            .frame(width: 80, alignment: .leading)
+                        Text("\(String(format: "%.2f", todayWater))")
+                            .font(.title)
+                            .fontWeight(.semibold)
+                    }
+                    VStack(alignment: .leading) {
+                        Text("Goal")
+                            .foregroundColor(.secondary)
+                            .frame(width: 80, alignment: .leading)
+                        Text("4.00")
+                            .font(.title)
+                            .fontWeight(.semibold)
+                    }
+                }
+            }
+            .padding(.top)
         }
-        .padding(.top)
+        .padding()
+        .overlay(RoundedRectangle(cornerRadius: 17.0).stroke(.tertiary, lineWidth: 1))
+
     }
 }
+
+extension DateFormatter {
+    static var day: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE" // EEEE format for full day name
+        return formatter
+    }
+}
+
 
 struct TodayView_Previews: PreviewProvider {
     static var previews: some View {

@@ -46,7 +46,7 @@ final class CameraSessionController: NSObject, AVCaptureVideoDataOutputSampleBuf
     @Published var shouldDismiss: Bool = false
     @Published var shouldNavigate: Bool = false
     
-    @Published var showAlert = false  // Add this line
+    @Published var showAlert = false
 
     override init() {
         guard let model = try? VNCoreMLModel(for: FoodFlare_Classification_1().model) else {
@@ -63,14 +63,12 @@ final class CameraSessionController: NSObject, AVCaptureVideoDataOutputSampleBuf
                     return
                 }
                 
-                // Define the capture device we want to use
                 guard let camera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
                     print("No camera available - are you on a simulator?")
                     return
                 }
 
                 do {
-                    // Add the input for the capture session
                     let input = try AVCaptureDeviceInput(device: camera)
                     if self.session.canAddInput(input) {
                         self.session.addInput(input)
@@ -105,15 +103,16 @@ final class CameraSessionController: NSObject, AVCaptureVideoDataOutputSampleBuf
     }
 
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        self.lastFrame = sampleBuffer
+        DispatchQueue.main.async { [weak self] in
+            self?.lastFrame = sampleBuffer
+        }
     }
 
     func processLastFrame() {
-        // Instantiate the haptic feedback generators
         let gentleFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
         let strongFeedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
             
-        guard let pixelBuffer = CMSampleBufferGetImageBuffer(lastFrame!) else {
+        guard let lastFrame = lastFrame, let pixelBuffer = CMSampleBufferGetImageBuffer(lastFrame) else {
             print("Could not get image buffer.")
             return
         }
@@ -128,22 +127,19 @@ final class CameraSessionController: NSObject, AVCaptureVideoDataOutputSampleBuf
                let firstResult = results.first {
                 if firstResult.confidence > 0.75 {
                     print("Classification: \(firstResult.identifier), Confidence: \(firstResult.confidence)")
-                    // Trigger a light haptic feedback
                     gentleFeedbackGenerator.impactOccurred()
                         
                     DispatchQueue.main.async {
                         self.shouldDismiss = true
                         self.detectedItem = firstResult.identifier
-                        self.shouldShowDetectedItemSheet = true // Show the sheet when an item is detected
+                        self.shouldShowDetectedItemSheet = true
                     }
                 } else {
                     print("Nothing detected with sufficient confidence.")
-                    // Trigger multiple heavy haptic feedbacks to indicate a warning
                     strongFeedbackGenerator.impactOccurred()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                         strongFeedbackGenerator.impactOccurred()
 
-                        // Show the alert
                         DispatchQueue.main.async {
                             self.showAlert = true
                         }
@@ -151,12 +147,10 @@ final class CameraSessionController: NSObject, AVCaptureVideoDataOutputSampleBuf
                 }
             } else {
                 print("No results from VNCoreMLRequest.")
-                // Trigger multiple heavy haptic feedbacks to indicate a warning
                 strongFeedbackGenerator.impactOccurred()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                     strongFeedbackGenerator.impactOccurred()
 
-                    // Show the alert
                     DispatchQueue.main.async {
                         self.showAlert = true
                     }
@@ -164,12 +158,13 @@ final class CameraSessionController: NSObject, AVCaptureVideoDataOutputSampleBuf
             }
         }
 
-        try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
+        do {
+            try VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
+        } catch {
+            print("Error performing image request: \(error)")
+        }
     }
 }
-
-
-import SwiftUI
 
 struct CameraView: View {
     @StateObject private var controller = CameraSessionController()
