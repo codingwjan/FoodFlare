@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3D2E5C0C2A38BF4700312FA5 /* FoodDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2E5C0B2A38BF4700312FA5 /* FoodDetails.swift */; };
-		3D4443942A442EAF00C1E1CB /* FoodFlare Classification 1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3D4443932A442EAF00C1E1CB /* FoodFlare Classification 1.mlmodel */; };
 		3D4443962A44775500C1E1CB /* AddCustomItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4443952A44775500C1E1CB /* AddCustomItem.swift */; };
 		3D4901652A3B3424008484FC /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4901642A3B3424008484FC /* HistoryView.swift */; };
 		3D50834B2A421AF700F470A7 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB1FA352A3E441800BB14AD /* WidgetKit.framework */; };
@@ -37,6 +36,7 @@
 		3D7993EB2A3F39A8007B4AE3 /* FoodImpactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7993EA2A3F39A8007B4AE3 /* FoodImpactView.swift */; };
 		3D7993ED2A3F3A4A007B4AE3 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7993EC2A3F3A4A007B4AE3 /* TodayView.swift */; };
 		3D7993F02A3F417D007B4AE3 /* AddWaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7993EF2A3F417D007B4AE3 /* AddWaterView.swift */; };
+		3D8500A12A45556A0019CA14 /* FoodFlare Classification 1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3D8500A02A45556A0019CA14 /* FoodFlare Classification 1.mlmodel */; };
 		3D850EC62A4051E700E29208 /* ManualItemAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D850EC52A4051E700E29208 /* ManualItemAddView.swift */; };
 		3D850EC82A40C9F900E29208 /* WaterSizeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D850EC72A40C9F900E29208 /* WaterSizeButton.swift */; };
 		3D850ECD2A40DF2600E29208 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D850ECC2A40DF2600E29208 /* InformationView.swift */; };
@@ -76,7 +76,6 @@
 
 /* Begin PBXFileReference section */
 		3D2E5C0B2A38BF4700312FA5 /* FoodDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetails.swift; sourceTree = "<group>"; };
-		3D4443932A442EAF00C1E1CB /* FoodFlare Classification 1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = "FoodFlare Classification 1.mlmodel"; path = "../../../Machine Learning/Model/jan/FoodFlare Classification 1.mlmodel"; sourceTree = "<group>"; };
 		3D4443952A44775500C1E1CB /* AddCustomItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCustomItem.swift; sourceTree = "<group>"; };
 		3D4901642A3B3424008484FC /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		3D50834A2A421AF600F470A7 /* FoodFlare WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "FoodFlare WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +104,7 @@
 		3D7993EA2A3F39A8007B4AE3 /* FoodImpactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodImpactView.swift; sourceTree = "<group>"; };
 		3D7993EC2A3F3A4A007B4AE3 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		3D7993EF2A3F417D007B4AE3 /* AddWaterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWaterView.swift; sourceTree = "<group>"; };
+		3D8500A02A45556A0019CA14 /* FoodFlare Classification 1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = "FoodFlare Classification 1.mlmodel"; path = "../../../Machine Learning/Model/jan/FoodFlare Classification 1.mlmodel"; sourceTree = "<group>"; };
 		3D850EC52A4051E700E29208 /* ManualItemAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualItemAddView.swift; sourceTree = "<group>"; };
 		3D850EC72A40C9F900E29208 /* WaterSizeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterSizeButton.swift; sourceTree = "<group>"; };
 		3D850ECC2A40DF2600E29208 /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
@@ -202,7 +202,7 @@
 		3D5EAADC2A383EDD004DE112 /* FoodFlare App */ = {
 			isa = PBXGroup;
 			children = (
-				3D4443932A442EAF00C1E1CB /* FoodFlare Classification 1.mlmodel */,
+				3D8500A02A45556A0019CA14 /* FoodFlare Classification 1.mlmodel */,
 				3D50835F2A421B3900F470A7 /* Services */,
 				3D5F43E42A3D00CB0042529A /* PersistenceController.swift */,
 				3DC001382A3857A7002DBF11 /* FoodFlare-App-Info.plist */,
@@ -432,6 +432,7 @@
 				3D7993E72A3F3945007B4AE3 /* WeeklyCaloriesView.swift in Sources */,
 				3D5A7E542A417CC000A31956 /* DeveloperView.swift in Sources */,
 				3D7993E92A3F3958007B4AE3 /* WeeklySugarView.swift in Sources */,
+				3D8500A12A45556A0019CA14 /* FoodFlare Classification 1.mlmodel in Sources */,
 				3D5F43E32A3CDCD30042529A /* StatisticView.swift in Sources */,
 				3D5EAAF92A384AE6004DE112 /* CameraView.swift in Sources */,
 				3D850EC62A4051E700E29208 /* ManualItemAddView.swift in Sources */,
@@ -444,7 +445,6 @@
 				3D5083632A42202F00F470A7 /* DataFetcher.swift in Sources */,
 				3D5EAAF12A38472D004DE112 /* Home.swift in Sources */,
 				3D4901652A3B3424008484FC /* HistoryView.swift in Sources */,
-				3D4443942A442EAF00C1E1CB /* FoodFlare Classification 1.mlmodel in Sources */,
 				3DC1674B2A3F742D00B18F80 /* WeeklyWaterView.swift in Sources */,
 				3D2E5C0C2A38BF4700312FA5 /* FoodDetails.swift in Sources */,
 				3D5EAAF42A38478B004DE112 /* HistoryWidget.swift in Sources */,

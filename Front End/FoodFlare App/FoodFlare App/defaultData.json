@@ -422,6 +422,61 @@
           "foodDescription": "A breaded and fried meat cutlet, typically made from veal, pork, or chicken.",
           "foodCategoryColor": "Brown",
           "foodAmountMatters": true
+        },
+        {
+          "foodName": "baked_camembert",
+          "foodCategory": "Dairy",
+          "foodCalories": 300,
+          "foodSugar": 1,
+          "foodDescription": "A soft, creamy cheese from France that has been baked until it's warm and gooey, often served with crusty bread or fruit.",
+          "foodCategoryColor": "White",
+          "foodAmountMatters": true
+        },
+        {
+          "foodName": "chia_seeds",
+          "foodCategory": "Seeds & Nuts",
+          "foodCalories": 138,
+          "foodSugar": 0,
+          "foodDescription": "Tiny black seeds from the plant Salvia Hispanica, packed with fiber, protein, and omega-3 fatty acids.",
+          "foodCategoryColor": "Black",
+          "foodAmountMatters": true
+        },
+        {
+          "foodName": "focaccia",
+          "foodCategory": "Bread",
+          "foodCalories": 272,
+          "foodSugar": 1,
+          "foodDescription": "A flat Italian bread that is similar to pizza dough and typically seasoned with olive oil and salt, sometimes topped with herbs or other ingredients.",
+          "foodCategoryColor": "Brown",
+          "foodAmountMatters": true
+        },
+        {
+          "foodName": "ham",
+          "foodCategory": "Meat",
+          "foodCalories": 123,
+          "foodSugar": 0,
+          "foodDescription": "A type of pork that is usually salt-cured and can be served fresh or smoked, often enjoyed as part of a meal or in sandwiches.",
+          "foodCategoryColor": "Red",
+          "foodAmountMatters": true
+        },
+        {
+          "foodName": "shrimp_scampi_sauce",
+          "foodCategory": "Sauces",
+          "foodCalories": 70,
+          "foodSugar": 2,
+          "foodDescription": "A flavorful sauce usually made with garlic, butter, white wine, and lemon juice, often served with shrimp and pasta.",
+          "foodCategoryColor": "Yellow",
+          "foodAmountMatters": true
+        },
+        {
+          "foodName": "spaghetti",
+          "foodCategory": "Pasta",
+          "foodCalories": 221,
+          "foodSugar": 1,
+          "foodDescription": "A long, thin, cylindrical pasta of Italian origin, usually served with a variety of sauces.",
+          "foodCategoryColor": "Yellow",
+          "foodAmountMatters": true
         }
+
   ]
 }

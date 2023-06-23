@@ -221,6 +221,8 @@ struct CameraView: View {
                 let itemSugar = controller.itemSugar
                 let itemDescription = controller.itemDescription
                 HistoryItemView(detectedItemName: detectedItem, date: Date(), shouldShowDetectedItemSheet: $controller.shouldShowDetectedItemSheet, isNewDetection: .constant(true))
+                    .presentationDetents([.medium, .large])
+                    .presentationDragIndicator(.visible)
 
             }
         }
