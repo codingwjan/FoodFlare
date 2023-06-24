@@ -97,6 +97,7 @@ struct AddWaterView: View {
                         LazyVGrid(columns: gridLayout, spacing: 10) {
                             WaterSizeButton(iconName: "wineglass.fill", waterAmount: 0.1) // 100ml
                             WaterSizeButton(iconName: "cup.and.saucer.fill", waterAmount: 0.25) // 250ml
+                            WaterSizeButton(iconName: "drop.halffull", waterAmount: 0.33) // 250ml
                             WaterSizeButton(iconName: "mug.fill", waterAmount: 0.4) // 400ml
                             WaterSizeButton(iconName: "mug.fill", waterAmount: 0.5) // 500ml
                             WaterSizeButton(iconName: "waterbottle.fill", waterAmount: 1) // 1L
