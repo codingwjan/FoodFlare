@@ -40,7 +40,7 @@ struct Home: View {
             ScrollView {
                 VStack {
                     HStack {
-                        Text("Food Flare")
+                        Text(titleAnimator.title)
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .padding(.bottom)
