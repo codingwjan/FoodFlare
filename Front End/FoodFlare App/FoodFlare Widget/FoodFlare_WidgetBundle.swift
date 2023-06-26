@@ -12,6 +12,5 @@ import SwiftUI
 struct FoodFlare_WidgetBundle: WidgetBundle {
     var body: some Widget {
         FoodFlare_Widget()
-        FoodFlare_WidgetLiveActivity()
     }
 }

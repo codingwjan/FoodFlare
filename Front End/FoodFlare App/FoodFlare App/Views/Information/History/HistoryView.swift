@@ -55,27 +55,27 @@ struct HistoryView: View {
     
     
     var body: some View {
-            VStack {
-                HStack {
-                    Text("History")
-                        .font(.title)
-                        .fontWeight(.bold)
-                    Spacer()
-                    if !historyItems.isEmpty {
-                        NavigationLink(destination: FullHistoryView()) {
-                            Text("Show more")
-                        }
-                    }
+        VStack(alignment: .leading) {
+            HStack {
+                Text("History")
+                    .font(.title)
+                    .fontWeight(.bold)
+                Spacer()
+            }
+            
+            ForEach(Array(historyItems).prefix(5), id: \.self) { item in
+                NavigationLink(destination: HistoryItemView(detectedItemName: item.foodName ?? "--", date: item.date ?? Date(), shouldShowDetectedItemSheet: .constant(false), isNewDetection: .constant(false)))
+                               {
+                    HistoryWidget(foodName: item.foodName ?? "--", foodCategory: item.foodCategory ?? "--", date: item.date ?? Date())
                 }
-                ForEach(Array(historyItems).prefix(5), id: \.self) { item in
-                    NavigationLink(destination: HistoryItemView(detectedItemName: item.foodName ?? "--", date: item.date ?? Date(), shouldShowDetectedItemSheet: .constant(false), isNewDetection: .constant(false)))
-                                   {
-                        HistoryWidget(foodName: item.foodName ?? "--", foodCategory: item.foodCategory ?? "--", date: item.date ?? Date())
-                    }
-                                   .foregroundStyle(Color.primary)
+                               .foregroundStyle(Color.primary)
+            }
+                    
+
                 }
-        }
-        .padding()
+                .padding()
+                .overlay(RoundedRectangle(cornerRadius: 17.0).stroke(.tertiary, lineWidth: 1))
+                .padding(.top)
         
     }
 }

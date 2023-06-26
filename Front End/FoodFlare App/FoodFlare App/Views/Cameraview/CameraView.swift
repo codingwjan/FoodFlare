@@ -1,13 +1,5 @@
-//
-//  CameraView.swift
-//  FoodFlare App
-//
-//  Created by Jan Pink on 13.06.23.
-//
-
 import AVFoundation
 import SwiftUI
-import UIKit
 import CoreML
 import Vision
 import CoreData
@@ -38,6 +30,8 @@ final class CameraSessionController: NSObject, AVCaptureVideoDataOutputSampleBuf
     var model: VNCoreMLModel
     var lastFrame: CMSampleBuffer?
     let viewContext = PersistenceController.shared.container.viewContext
+    var frameProcessingTimer: Timer?
+    let frameProcessingQueue = DispatchQueue(label: "FrameProcessingQueue")
     
     @Published var itemCategory: String?
     @Published var itemCalories: String?
@@ -46,48 +40,68 @@ final class CameraSessionController: NSObject, AVCaptureVideoDataOutputSampleBuf
     @Published var shouldDismiss: Bool = false
     @Published var shouldNavigate: Bool = false
     
-    @Published var showAlert = false
+    @Published var isNavigatingAwayFromCameraView: Bool = false
+
+    
 
     override init() {
         guard let model = try? VNCoreMLModel(for: FoodFlare_Classification_1().model) else {
             fatalError("Unable to load model")
         }
-
         self.model = model
+        super.init()
+        self.startFrameProcessingTimer()
+    }
+
+    func startFrameProcessingTimer() {
+        self.frameProcessingTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+            self.frameProcessingQueue.async { self.processLastFrame() }
+        }
     }
 
     func startSession() {
-        if !session.isRunning {
-            checkCameraAuthorization { isAuthorized in
-                guard isAuthorized else {
-                    return
-                }
-                
-                guard let camera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
-                    print("No camera available - are you on a simulator?")
-                    return
-                }
-
-                do {
-                    let input = try AVCaptureDeviceInput(device: camera)
-                    if self.session.canAddInput(input) {
-                        self.session.addInput(input)
-                    } else {
-                        print("Couldn't add camera input")
+            if !session.isRunning {
+                checkCameraAuthorization { isAuthorized in
+                    guard isAuthorized else {
+                        return
                     }
-                } catch {
-                    print("Couldn't create camera input: \(error)")
-                    return
+                    
+                    guard let camera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
+                        print("No camera available - are you on a simulator?")
+                        return
+                    }
+
+                    do {
+                        let input = try AVCaptureDeviceInput(device: camera)
+                        if self.session.canAddInput(input) {
+                            self.session.addInput(input)
+                        } else {
+                            print("Couldn't add camera input")
+                        }
+                    } catch {
+                        print("Couldn't create camera input: \(error)")
+                        return
+                    }
+
+                    let output = AVCaptureVideoDataOutput()
+                    output.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
+                    if self.session.canAddOutput(output) {
+                        self.session.addOutput(output)
+                    } else {
+                        print("Couldn't add video output")
+                        return
+                    }
+                    
+                    do {
+                        self.session.startRunning()
+                    } catch {
+                        print("Couldn't start the AVCaptureSession: \(error)")
+                        return
+                    }
                 }
-
-                let output = AVCaptureVideoDataOutput()
-                output.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
-                self.session.addOutput(output)
-
-                self.session.startRunning()
             }
         }
-    }
 
     func checkCameraAuthorization(completion: @escaping (Bool) -> Void) {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
@@ -127,7 +141,7 @@ final class CameraSessionController: NSObject, AVCaptureVideoDataOutputSampleBuf
                let firstResult = results.first {
                 if firstResult.confidence > 0.75 {
                     print("Classification: \(firstResult.identifier), Confidence: \(firstResult.confidence)")
-                    gentleFeedbackGenerator.impactOccurred()
+                    //gentleFeedbackGenerator.impactOccurred()
                         
                     DispatchQueue.main.async {
                         self.shouldDismiss = true
@@ -136,24 +150,16 @@ final class CameraSessionController: NSObject, AVCaptureVideoDataOutputSampleBuf
                     }
                 } else {
                     print("Nothing detected with sufficient confidence.")
-                    strongFeedbackGenerator.impactOccurred()
+                    //strongFeedbackGenerator.impactOccurred()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                        strongFeedbackGenerator.impactOccurred()
-
-                        DispatchQueue.main.async {
-                            self.showAlert = true
-                        }
+                        //strongFeedbackGenerator.impactOccurred()
                     }
                 }
             } else {
                 print("No results from VNCoreMLRequest.")
-                strongFeedbackGenerator.impactOccurred()
+                //strongFeedbackGenerator.impactOccurred()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                    strongFeedbackGenerator.impactOccurred()
-
-                    DispatchQueue.main.async {
-                        self.showAlert = true
-                    }
+                    //strongFeedbackGenerator.impactOccurred()
                 }
             }
         }
@@ -170,62 +176,75 @@ struct CameraView: View {
     @StateObject private var controller = CameraSessionController()
 
     var body: some View {
-        GeometryReader { geometry in
-            CameraPreview(session: controller.session)
-                .onAppear(perform: {
-                    controller.startSession()
-                })
-                .onDisappear(perform: {
-                    controller.session.stopRunning()
-                })
-                .overlay(alignment: .bottom) {
-                    buttonsView()
-                        .frame(height: geometry.size.height * 0.15)
-                        .background(Color.black.opacity(0.75))
+        NavigationView(content: {
+            ZStack {
+                // Camera Preview
+                GeometryReader { geometry in
+                    CameraPreview(session: controller.session)
+                        .onAppear(perform: {
+                            controller.startSession()
+                        })
+                        .onDisappear(perform: {
+                            controller.session.stopRunning()
+                        })
                 }
-                .background(Color.black)
-        }
-        .ignoresSafeArea(edges: .top)
-    }
-    
-    private func buttonsView() -> some View {
-        HStack(spacing: 60) {
-            Spacer()
-            Button {
-                controller.processLastFrame()
-            } label: {
-                ZStack {
-                    Circle()
-                        .strokeBorder(Color.white, lineWidth: 3)
-                        .frame(width: 62, height: 62)
-                    Circle()
-                        .fill(Color.white)
-                        .frame(width: 50, height: 50)
-                }
-            }
-            Spacer()
-        }
-        .buttonStyle(.plain)
-        .labelStyle(.iconOnly)
-        .padding()
-        .alert(isPresented: $controller.showAlert) {
-                            Alert(title: Text("Warning"),
-                                  message: Text("Nothing detected with sufficient confidence."),
-                                  dismissButton: .default(Text("OK")))
+                .ignoresSafeArea(edges: .top)
+                
+                // Overlay Views
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        
+                        if let detectedItem = controller.detectedItem {
+                            NavigationLink(
+                                destination: HistoryItemView(
+                                    detectedItemName: detectedItem,
+                                    date: Date(),
+                                    shouldShowDetectedItemSheet: $controller.shouldShowDetectedItemSheet,
+                                    isNewDetection: .constant(true)
+                                )
+                                .onAppear(perform: { controller.isNavigatingAwayFromCameraView = true })
+                                .onDisappear(perform: { controller.isNavigatingAwayFromCameraView = false })
+                            ) {
+                                Text(detectedItem)
+                                    .font(.system(size: 20, weight: .regular, design: .default))
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .background(Color.blue)
+                                    .cornerRadius(17.0)
+                                    .frame(maxWidth: .infinity)
+                            }
+                            .background(Color.clear)
+                        } else {
+                            Text("No item detected")
+                                .font(.system(size: 20, weight: .regular, design: .default))
+                                .foregroundColor(Color.white)
+                                .padding()
+                                .background(Color.secondary)
+                                .cornerRadius(17.0)
+                                .frame(maxWidth: .infinity)
                         }
-        .sheet(isPresented: $controller.shouldShowDetectedItemSheet) {
-            if let detectedItem = controller.detectedItem {
-                let itemImage = controller.lastFrame
-                let itemCategory = controller.itemCategory
-                let itemCalories = controller.itemCalories
-                let itemSugar = controller.itemSugar
-                let itemDescription = controller.itemDescription
-                HistoryItemView(detectedItemName: detectedItem, date: Date(), shouldShowDetectedItemSheet: $controller.shouldShowDetectedItemSheet, isNewDetection: .constant(true))
-                    .presentationDetents([.medium, .large])
-                    .presentationDragIndicator(.visible)
-
+                        Spacer()
+                    }
+                    .padding()
+                    .background(Color.clear)
+                }
+                .buttonStyle(.plain)
+                .labelStyle(.iconOnly)
+                .padding()
+                .padding(.bottom, 60.0)
             }
-        }
+            .sheet(isPresented: .constant(!controller.isNavigatingAwayFromCameraView)) {
+                SheetContentView()
+                    .presentationDetents([.height(60.0), .medium, .large])
+                    .presentationDragIndicator(.visible)
+                    .interactiveDismissDisabled()
+                    .presentationBackgroundInteraction(
+                        .enabled(upThrough: .large)
+                    )
+            }
+        })
     }
 }
 
