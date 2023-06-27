@@ -36,11 +36,22 @@ struct Home: View {
     @State private var waterAmount: Double = 0.5
     
     var body: some View {
-        ScrollView {
-            StatisticView()
-            HistoryView()
+        NavigationView {
+            ScrollView {
+                VStack {
+                    HStack {
+                        Text(titleAnimator.title)
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .padding(.bottom)
+                        Spacer()
+                    }
+                    TodayView(todayCalories: 5, todayBurned: "450", todayWater: 3.0, todaySugar: 5)
+                    HistoryView()
+                }
+                .padding()
+            }
         }
-        .navigationBarTitle(titleAnimator.title, displayMode: .large)
     }
 }
 

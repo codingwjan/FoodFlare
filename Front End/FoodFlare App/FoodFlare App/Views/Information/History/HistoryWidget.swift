@@ -26,7 +26,7 @@ struct HistoryWidget: View {
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 105.0, height: 70)
                 .clipped()
-                .cornerRadius(16)
+                .cornerRadius(10)
             VStack(alignment: .leading) {
                 Text(formattedFoodName)
                     .font(.title2)
@@ -39,13 +39,12 @@ struct HistoryWidget: View {
             }
             Spacer()
             HStack {
-                Text("\(date, formatter: DateFormatter.onlyDate)") // format the date to a readable string
                 Image(systemName: "chevron.right")
             }
         }
         .padding(10.0)
         .background(.quaternary)
-        .cornerRadius(20)
+        .cornerRadius(14)
         .onAppear {
             print("HistoryWidget appeared with foodName: \(formattedFoodName), foodCategory: \(formattedFoodCategory), date: \(date)")
         }

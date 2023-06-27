@@ -83,40 +83,9 @@ struct SectionView: View {
         if (!toggleState) {
             Section(header: Text(title)) {
                 ForEach(items, id: \.self) { item in
-                    NavigationLink(destination: HistoryItemView(detectedItemName: item.foodName ?? "--", date: Date(), shouldShowDetectedItemSheet: .constant(false), isNewDetection: .constant(false))) {
-                        HStack {
-                            Text(item.foodName ?? "")
-                                .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                                    Button {
-                                        favoriteAction(item)  // Use favoriteAction here
-                                    } label: {
-                                        Label ("Favorite", systemImage: item.isFavourite ? "heart.fill" : "heart")  // Use isFavourite to conditionally render the heart
-                                    }
-                                    
-                                }
-                                .tint(Color.orange)
-                            Spacer()
-                            if(item.isFavourite) {
-                                Image(systemName: "heart.fill")
-                                    .foregroundColor(Color.orange)
-                            }
-                        }
-                    }
-                }
-            }
-        } else {
-            ForEach(items, id: \.self) { item in
-                NavigationLink(destination: HistoryItemView(detectedItemName: item.foodName ?? "--", date: Date(), shouldShowDetectedItemSheet: .constant(false), isNewDetection: .constant(false))) {
+                    
                     HStack {
                         Text(item.foodName ?? "")
-                            .swipeActions(edge: .trailing) {
-                                Button(role: .destructive) {
-                                    deleteAction(item)
-                                } label: {
-                                    Label("Delete", systemImage: "trash")
-                                }
-                            }
-                            .tint(Color.red)
                             .swipeActions(edge: .leading, allowsFullSwipe: true) {
                                 Button {
                                     favoriteAction(item)  // Use favoriteAction here
@@ -133,6 +102,36 @@ struct SectionView: View {
                         }
                     }
                 }
+                
+            }
+        } else {
+            ForEach(items, id: \.self) { item in
+                HStack {
+                    Text(item.foodName ?? "")
+                        .swipeActions(edge: .trailing) {
+                            Button(role: .destructive) {
+                                deleteAction(item)
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
+                        }
+                        .tint(Color.red)
+                        .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                            Button {
+                                favoriteAction(item)  // Use favoriteAction here
+                            } label: {
+                                Label ("Favorite", systemImage: item.isFavourite ? "heart.fill" : "heart")  // Use isFavourite to conditionally render the heart
+                            }
+                            
+                        }
+                        .tint(Color.orange)
+                    Spacer()
+                    if(item.isFavourite) {
+                        Image(systemName: "heart.fill")
+                            .foregroundColor(Color.orange)
+                    }
+                }
+                
             }
         }
     }

@@ -180,8 +180,7 @@ struct CameraView: View {
                 })
                 .overlay(alignment: .bottom) {
                     buttonsView()
-                        .frame(height: geometry.size.height * 0.15)
-                        .background(Color.black.opacity(0.75))
+                        .frame(height: geometry.size.height * 0.3)
                 }
                 .background(Color.black)
         }
@@ -213,6 +212,7 @@ struct CameraView: View {
                                   message: Text("Nothing detected with sufficient confidence."),
                                   dismissButton: .default(Text("OK")))
                         }
+        
         .sheet(isPresented: $controller.shouldShowDetectedItemSheet) {
             if let detectedItem = controller.detectedItem {
                 let itemImage = controller.lastFrame
@@ -221,11 +221,18 @@ struct CameraView: View {
                 let itemSugar = controller.itemSugar
                 let itemDescription = controller.itemDescription
                 HistoryItemView(detectedItemName: detectedItem, date: Date(), shouldShowDetectedItemSheet: $controller.shouldShowDetectedItemSheet, isNewDetection: .constant(true))
-                    .presentationDetents([.medium, .large])
-                    .presentationDragIndicator(.visible)
 
             }
         }
+        .sheet(isPresented: .constant(true)) {
+                            SheetContentView()
+                                .presentationDetents([.height(60.0), .medium, .large])
+                                .presentationDragIndicator(.visible)
+                                .interactiveDismissDisabled()
+                                .presentationBackgroundInteraction(
+                                    .enabled(upThrough: .large)
+                                )
+                        }
     }
 }
 
