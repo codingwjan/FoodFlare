@@ -11,15 +11,26 @@ import HealthKit
 struct TodayView: View {
     let todayCalories: Int
     let todayBurned: String
-    let todayWater: Double
     let todaySugar: Int
+    let todaySugarGoal: Int
+    let overviewShowMore: Bool
     
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("\(Date(), formatter: DateFormatter.day)")
-                .font(.title)
-                .fontWeight(.bold)
+            HStack {
+                Text("\(Date(), formatter: DateFormatter.day)")
+                    .font(.title)
+                    .fontWeight(.bold)
+                Spacer()
+                if (overviewShowMore == true) {
+                    NavigationLink {
+                        StatisticView()
+                    } label: {
+                        Text("Show more")
+                    }
+                }
+            }
                 
             HStack {
                 Text("Calories")
@@ -47,15 +58,15 @@ struct TodayView: View {
             .padding(.top)
 
             HStack {
-                Text("Water")
+                Text("Sugar")
                     .frame(width: 70, alignment: .leading)
                 Spacer()
                 HStack(alignment: .center, spacing: 20) {
                     VStack(alignment: .leading) {
-                        Text("Drunken")
+                        Text("Eaten")
                             .foregroundColor(.secondary)
                             .frame(width: 80, alignment: .leading)
-                        Text("\(String(format: "%.2f", todayWater))")
+                        Text("\(todaySugar)")
                             .font(.title)
                             .fontWeight(.semibold)
                     }
@@ -63,7 +74,7 @@ struct TodayView: View {
                         Text("Goal")
                             .foregroundColor(.secondary)
                             .frame(width: 80, alignment: .leading)
-                        Text("4.00")
+                        Text("\(todaySugarGoal)")
                             .font(.title)
                             .fontWeight(.semibold)
                     }
@@ -88,6 +99,6 @@ extension DateFormatter {
 
 struct TodayView_Previews: PreviewProvider {
     static var previews: some View {
-        TodayView(todayCalories: 15, todayBurned: "12", todayWater: 0.75, todaySugar: 15)
+        TodayView(todayCalories: 15, todayBurned: "12", todaySugar: 15, todaySugarGoal: 5, overviewShowMore: false)
     }
 }

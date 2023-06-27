@@ -98,17 +98,21 @@ struct StatisticView: View {
     
     
     var body: some View {
-        VStack {
-            TodayView(todayCalories: todayCalories, todayBurned: todayBurned, todayWater: todayWater, todaySugar: todaySugar)
-            WeeklyCaloriesView(totalCalories: totalCalories)
-            WeeklyWaterView(totalWater: totalWater)
-            FoodImpactView()
-            WeeklySugarView(totalSugar: totalSugar)
+        ScrollView {
+            VStack {
+                TodayView(todayCalories: todayCalories, todayBurned: todayBurned, todaySugar: todaySugar, todaySugarGoal: 5, overviewShowMore: false)
+                EatenVsBurnedView()
+                WeeklyCaloriesView(totalCalories: totalCalories)
+                FoodImpactView()
+                WeeklySugarView(totalSugar: totalSugar)
+            }
+            .padding()
         }
-        .padding()
         .onAppear {
             requestAuthorization()
         }
+        .navigationTitle("Statistics")
+        .navigationBarTitleDisplayMode(.automatic)
     }
 }
 
