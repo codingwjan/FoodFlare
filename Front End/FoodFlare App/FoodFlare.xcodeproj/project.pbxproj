@@ -42,12 +42,12 @@
 		3D9E30702A3AFE7000C424D7 /* olddefaultDatan.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D9E306F2A3AFE7000C424D7 /* olddefaultDatan.json */; };
 		3D9E307C2A3B13ED00C424D7 /* FoodItem.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3D9E307A2A3B13ED00C424D7 /* FoodItem.xcdatamodeld */; };
 		3DA60F4C2A460550007804DF /* SheetContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA60F4B2A460550007804DF /* SheetContentView.swift */; };
+		3DA927402A4ABE5400505C67 /* EatenVsBurnedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA9273F2A4ABE5400505C67 /* EatenVsBurnedView.swift */; };
 		3DAF6ED92A399BAB0004C024 /* ItemBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAF6ED82A399BAB0004C024 /* ItemBoxView.swift */; };
 		3DB1FA292A3E274800BB14AD /* HistoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB1FA282A3E274800BB14AD /* HistoryItemView.swift */; };
 		3DB1FA2D2A3E3E3700BB14AD /* FullHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB1FA2C2A3E3E3700BB14AD /* FullHistoryView.swift */; };
 		3DB3CA6D2A3C8CE4001613B3 /* defaultData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3DB3CA6C2A3C8CE4001613B3 /* defaultData.json */; };
 		3DB3CA712A3C9FF7001613B3 /* ResilientImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB3CA702A3C9FF7001613B3 /* ResilientImage.swift */; };
-		3DC1674B2A3F742D00B18F80 /* WeeklyWaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC1674A2A3F742D00B18F80 /* WeeklyWaterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +110,7 @@
 		3D9E306F2A3AFE7000C424D7 /* olddefaultDatan.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = olddefaultDatan.json; sourceTree = "<group>"; };
 		3D9E307B2A3B13ED00C424D7 /* FoodItem.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FoodItem.xcdatamodel; sourceTree = "<group>"; };
 		3DA60F4B2A460550007804DF /* SheetContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetContentView.swift; sourceTree = "<group>"; };
+		3DA9273F2A4ABE5400505C67 /* EatenVsBurnedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EatenVsBurnedView.swift; sourceTree = "<group>"; };
 		3DAF6ED82A399BAB0004C024 /* ItemBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemBoxView.swift; sourceTree = "<group>"; };
 		3DB1FA282A3E274800BB14AD /* HistoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryItemView.swift; sourceTree = "<group>"; };
 		3DB1FA2C2A3E3E3700BB14AD /* FullHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullHistoryView.swift; sourceTree = "<group>"; };
@@ -118,7 +119,6 @@
 		3DB3CA6C2A3C8CE4001613B3 /* defaultData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = defaultData.json; sourceTree = "<group>"; };
 		3DB3CA702A3C9FF7001613B3 /* ResilientImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResilientImage.swift; sourceTree = "<group>"; };
 		3DC001382A3857A7002DBF11 /* FoodFlare-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "FoodFlare-App-Info.plist"; sourceTree = SOURCE_ROOT; };
-		3DC1674A2A3F742D00B18F80 /* WeeklyWaterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyWaterView.swift; sourceTree = "<group>"; };
 		3DDCEF862A3D022F007374BC /* FoodItem 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "FoodItem 2.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -247,9 +247,9 @@
 				3D5F43E22A3CDCD30042529A /* StatisticView.swift */,
 				3D7993E62A3F3945007B4AE3 /* WeeklyCaloriesView.swift */,
 				3D7993E82A3F3958007B4AE3 /* WeeklySugarView.swift */,
-				3DC1674A2A3F742D00B18F80 /* WeeklyWaterView.swift */,
 				3D7993EA2A3F39A8007B4AE3 /* FoodImpactView.swift */,
 				3D7993EC2A3F3A4A007B4AE3 /* TodayView.swift */,
+				3DA9273F2A4ABE5400505C67 /* EatenVsBurnedView.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -453,9 +453,9 @@
 				3D5083632A42202F00F470A7 /* DataFetcher.swift in Sources */,
 				3D5EAAF12A38472D004DE112 /* Home.swift in Sources */,
 				3D4901652A3B3424008484FC /* HistoryView.swift in Sources */,
-				3DC1674B2A3F742D00B18F80 /* WeeklyWaterView.swift in Sources */,
 				3D2E5C0C2A38BF4700312FA5 /* FoodDetails.swift in Sources */,
 				3D5EAAF42A38478B004DE112 /* HistoryWidget.swift in Sources */,
+				3DA927402A4ABE5400505C67 /* EatenVsBurnedView.swift in Sources */,
 				3DB1FA292A3E274800BB14AD /* HistoryItemView.swift in Sources */,
 				3D850ECD2A40DF2600E29208 /* InformationView.swift in Sources */,
 				3DB3CA712A3C9FF7001613B3 /* ResilientImage.swift in Sources */,
