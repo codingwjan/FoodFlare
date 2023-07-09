@@ -101,7 +101,7 @@ struct StatisticView: View {
         ScrollView {
             VStack {
                 TodayView(todayCalories: todayCalories, todayBurned: todayBurned, todaySugar: todaySugar, todaySugarGoal: 5, overviewShowMore: false)
-                EatenVsBurnedView()
+                //EatenVsBurnedView()
                 WeeklyCaloriesView(totalCalories: totalCalories)
                 FoodImpactView()
                 WeeklySugarView(totalSugar: totalSugar)

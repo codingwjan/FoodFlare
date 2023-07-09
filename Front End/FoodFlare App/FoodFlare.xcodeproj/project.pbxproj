@@ -152,13 +152,6 @@
 			path = FoodDetails;
 			sourceTree = "<group>";
 		};
-		3D5083452A421AB800F470A7 /* Widgets */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Widgets;
-			sourceTree = "<group>";
-		};
 		3D50834D2A421AF700F470A7 /* FoodFlare Widget */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,7 +222,6 @@
 		3D5EAAEC2A384697004DE112 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3D5083452A421AB800F470A7 /* Widgets */,
 				3D850ECB2A40DF1600E29208 /* Information */,
 				3D7993EE2A3F416F007B4AE3 /* Water */,
 				3DAF6ED42A399B350004C024 /* Itemview */,
