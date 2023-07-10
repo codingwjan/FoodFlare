@@ -137,13 +137,6 @@ struct Home: View {
         NavigationView {
             ScrollView {
                 VStack {
-                    HStack {
-                        Text(titleAnimator.title)
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                            .padding(.bottom)
-                        Spacer()
-                    }
                     TodayView(todayCalories: todayCalories, todayBurned: todayBurned, todaySugar: todaySugar, todaySugarGoal: 5, overviewShowMore: true)
                     HistoryView()
                     NavigationLink {
@@ -168,6 +161,15 @@ struct Home: View {
             }
             .onAppear {
                 requestAuthorization()
+            }
+            .navigationTitle(titleAnimator.title)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                NavigationLink {
+                    ManualItemAddView()
+                } label: {
+                    Image(systemName: "plus")
+                }
             }
         }
     }

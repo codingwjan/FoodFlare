@@ -43,8 +43,7 @@ struct HistoryWidget: View {
             }
         }
         .padding(10.0)
-        .background(.quaternary)
-        .cornerRadius(14)
+        .overlay(RoundedRectangle(cornerRadius: 12.0).stroke(.tertiary, lineWidth: 1))
         .onAppear {
             print("HistoryWidget appeared with foodName: \(formattedFoodName), foodCategory: \(formattedFoodCategory), date: \(date)")
         }
