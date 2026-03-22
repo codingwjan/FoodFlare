@@ -130,6 +130,7 @@ final class CameraSessionController: NSObject, AVCaptureVideoDataOutputSampleBuf
                     gentleFeedbackGenerator.impactOccurred()
                         
                     DispatchQueue.main.async {
+                        self.saveHistory(for: firstResult.identifier)
                         self.shouldDismiss = true
                         self.detectedItem = firstResult.identifier
                         self.shouldShowDetectedItemSheet = true
@@ -162,6 +163,28 @@ final class CameraSessionController: NSObject, AVCaptureVideoDataOutputSampleBuf
             try VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
         } catch {
             print("Error performing image request: \(error)")
+        }
+    }
+
+    private func saveHistory(for detectedItemName: String) {
+        let fetchRequest = NSFetchRequest<FoodItem>(entityName: "FoodItem")
+        fetchRequest.fetchLimit = 1
+        fetchRequest.predicate = NSPredicate(format: "foodName == %@", detectedItemName)
+
+        let newHistoryItem = History(context: viewContext)
+        newHistoryItem.foodName = detectedItemName
+        newHistoryItem.date = Date()
+
+        if let detectedItem = try? viewContext.fetch(fetchRequest).first {
+            newHistoryItem.foodCategory = detectedItem.foodCategory
+        }
+
+        do {
+            try viewContext.save()
+            print("Saved new history item: \(newHistoryItem)")
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
 }
@@ -220,7 +243,7 @@ struct CameraView: View {
                 let itemCalories = controller.itemCalories
                 let itemSugar = controller.itemSugar
                 let itemDescription = controller.itemDescription
-                HistoryItemView(detectedItemName: detectedItem, date: Date(), shouldShowDetectedItemSheet: $controller.shouldShowDetectedItemSheet, isNewDetection: .constant(true))
+                HistoryItemView(detectedItemName: detectedItem, date: Date(), shouldShowDetectedItemSheet: $controller.shouldShowDetectedItemSheet)
 
             }
         }

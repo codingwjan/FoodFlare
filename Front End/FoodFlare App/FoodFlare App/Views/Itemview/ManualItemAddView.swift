@@ -84,7 +84,7 @@ struct SectionView: View {
             Section(header: Text(title)) {
                 ForEach(items, id: \.self) { item in
                     NavigationLink {
-                        HistoryItemView(detectedItemName: item.foodName ?? "--", date: Date(), shouldShowDetectedItemSheet: .constant(false), isNewDetection: .constant(false))
+                        HistoryItemView(detectedItemName: item.foodName ?? "--", date: Date(), shouldShowDetectedItemSheet: .constant(false))
                     } label: {
                         HStack {
                             Text(item.foodName ?? "")
@@ -109,7 +109,7 @@ struct SectionView: View {
         } else {
             ForEach(items, id: \.self) { item in
                 NavigationLink {
-                    HistoryItemView(detectedItemName: item.foodName ?? "--", date: Date(), shouldShowDetectedItemSheet: .constant(false), isNewDetection: .constant(false))
+                    HistoryItemView(detectedItemName: item.foodName ?? "--", date: Date(), shouldShowDetectedItemSheet: .constant(false))
                 } label: {
                     HStack {
                         Text(item.foodName ?? "")
